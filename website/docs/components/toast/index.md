@@ -2,12 +2,13 @@
 title: Toast
 description: Used to display messages that are the result of a user’s actions.
 caption: Used to display messages that are the result of a user’s actions.
-status: released
 links:
   figma: https://www.figma.com/file/noyY6dUMDYjmySpHcMjhkN/HDS-Product---Components?node-id=7636%3A30467&t=XC8SUxxJOFHgqYzK-1
-  github: https://github.com/hashicorp/design-system/tree/main/packages/components/addon/components/hds/toast
+  github: https://github.com/hashicorp/design-system/tree/main/packages/components/src/components/hds/toast
+related: ['components/alert']
 previewImage: assets/illustrations/components/toast.jpg
-keywords: ['alert', 'toast', 'notification', 'banner', 'message']
+navigation:
+  keywords: ['alert', 'toast', 'notification', 'banner', 'message']
 ---
 
 <section data-tab="Guidelines">
@@ -18,7 +19,10 @@ keywords: ['alert', 'toast', 'notification', 'banner', 'message']
 <section data-tab="Code">
   @include "partials/code/how-to-use.md"
   @include "partials/code/component-api.md"
-  <!-- @include "partials/code/showcase.md" -->
+</section>
+
+<section data-tab="Content">
+  @include "partials/content/content.md"
 </section>
 
 <section data-tab="Specifications">

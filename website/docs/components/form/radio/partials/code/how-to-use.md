@@ -1,12 +1,5 @@
 ## How to use this component
 
-!!! Info
-
-**Examples have been simplified**
-
-We omit the `name` and `ID` attributes in the examples since processing of the data is the responsibility of the product teams.
-!!!
-
 There are three ways to use the Radio component:
 
 - `Form::Radio::Base` - the base component: the `<input>` control
@@ -26,20 +19,20 @@ The basic invocation creates:
 The `@name` argument offers an easy way to provide the same name for all the Radio controls in a single place.
 
 ```handlebars
-<Hds::Form::Radio::Group @name="datacenter" as |G|>
+<Hds::Form::Radio::Group @name="datacenter-demo1" as |G|>
   <G.Legend>Choose datacenter</G.Legend>
-  <G.Radio::Field as |F|>
+  <G.RadioField as |F|>
     <F.Label>NYC1</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>DC1</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>NYC2</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>SF1</F.Label>
-  </G.Radio::Field>
+  </G.RadioField>
 </Hds::Form::Radio::Group>
 ```
 
@@ -50,36 +43,36 @@ To better fit your spacing requirements, choose between two different layout ori
 ```handlebars
 <Hds::Form::Radio::Group @name="datacenter-demo2" as |G|>
   <G.Legend>Choose datacenter</G.Legend>
-  <G.Radio::Field as |F|>
+  <G.RadioField as |F|>
     <F.Label>NYC1</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>DC1</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>NYC2</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>SF1</F.Label>
-  </G.Radio::Field>
+  </G.RadioField>
 </Hds::Form::Radio::Group>
 ```
 
 ```handlebars
-<Hds::Form::Radio::Group @layout="horizontal" @name="datacenter-demo2" as |G|>
+<Hds::Form::Radio::Group @layout="horizontal" @name="datacenter-demo3" as |G|>
   <G.Legend>Choose datacenter</G.Legend>
-  <G.Radio::Field as |F|>
+  <G.RadioField as |F|>
     <F.Label>NYC1</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>DC1</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>NYC2</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>SF1</F.Label>
-  </G.Radio::Field>
+  </G.RadioField>
 </Hds::Form::Radio::Group>
 ```
 
@@ -98,15 +91,15 @@ When helper text is added, the component automatically adds an `aria-describedby
 <Hds::Form::Radio::Group @layout="horizontal" @name="method-demo1" as |G|>
   <G.Legend>Method <Hds::Badge @size="small" @text="Beta" @color="highlight" /></G.Legend>
   <G.HelperText>Choose which HTTP method to use for the communication channel. See <Hds::Link::Inline @href="#">HTTP protocol</Hds::Link::Inline> for more details.</G.HelperText>
-  <G.Radio::Field as |F|>
+  <G.RadioField as |F|>
     <F.Label>POST</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>GET</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>PUT</F.Label>
-  </G.Radio::Field>
+  </G.RadioField>
 </Hds::Form::Radio::Group>
 ```
 
@@ -118,17 +111,17 @@ Use the `@isRequired` and `@isOptional` arguments to add a visual indication tha
 <Hds::Form::Radio::Group @isRequired={{true}} @layout="horizontal" @name="method-demo2" as |G|>
   <G.Legend>Method</G.Legend>
   <G.HelperText>Choose which HTTP method to use for the communication channel.</G.HelperText>
-  <G.Radio::Field as |F|><F.Label>POST</F.Label></G.Radio::Field>
-  <G.Radio::Field as |F|><F.Label>GET</F.Label></G.Radio::Field>
-  <G.Radio::Field as |F|><F.Label>PUT</F.Label></G.Radio::Field>
+  <G.RadioField as |F|><F.Label>POST</F.Label></G.RadioField>
+  <G.RadioField as |F|><F.Label>GET</F.Label></G.RadioField>
+  <G.RadioField as |F|><F.Label>PUT</F.Label></G.RadioField>
 </Hds::Form::Radio::Group>
 <br />
 <Hds::Form::Radio::Group @isOptional={{true}} @layout="horizontal" @name="method-demo3" as |G|>
   <G.Legend>Method</G.Legend>
   <G.HelperText>Choose which HTTP method to use for the communication channel.</G.HelperText>
-  <G.Radio::Field as |F|><F.Label>POST</F.Label></G.Radio::Field>
-  <G.Radio::Field as |F|><F.Label>GET</F.Label></G.Radio::Field>
-  <G.Radio::Field as |F|><F.Label>PUT</F.Label></G.Radio::Field>
+  <G.RadioField as |F|><F.Label>POST</F.Label></G.RadioField>
+  <G.RadioField as |F|><F.Label>GET</F.Label></G.RadioField>
+  <G.RadioField as |F|><F.Label>PUT</F.Label></G.RadioField>
 </Hds::Form::Radio::Group>
 ```
 
@@ -139,18 +132,18 @@ To indicate a field is invalid, provide an error message using the `Error` conte
 ```handlebars
 <Hds::Form::Radio::Group @layout="horizontal" @name="datacenter-demo4" as |G|>
   <G.Legend>Choose datacenter</G.Legend>
-  <G.Radio::Field as |F|>
+  <G.RadioField as |F|>
     <F.Label>NYC1</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>DC1</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>NYC2</F.Label>
-  </G.Radio::Field>
-  <G.Radio::Field as |F|>
+  </G.RadioField>
+  <G.RadioField as |F|>
     <F.Label>SF1</F.Label>
-  </G.Radio::Field>
+  </G.RadioField>
   <G.Error>Error: you need to choose one datacenter.</G.Error>
 </Hds::Form::Radio::Group>
 ```
@@ -162,22 +155,22 @@ A group of Radios is made of one or more `Form::Radio::Field` components. All th
 ```handlebars
 <Hds::Form::Radio::Group @layout="vertical" @name="datacenter-demo5" as |G|>
   <G.Legend>Choose datacenter</G.Legend>
-  <G.Radio::Field @id="datacenter-NYC1" checked @value="NYC1" {{on "change" this.yourOnChangeFunction}} as |F|>
+  <G.RadioField @id="datacenter-NYC1" checked @value="NYC1" {{on "change" this.yourOnChangeFunction}} as |F|>
     <F.Label>NYC1</F.Label>
     <F.HelperText>CoreSite- 32 Avenue of the Americas</F.HelperText>
-  </G.Radio::Field>
-  <G.Radio::Field @id="datacenter-DC1" @value="DC1" {{on "change" this.yourOnChangeFunction}} as |F|>
+  </G.RadioField>
+  <G.RadioField @id="datacenter-DC1" @value="DC1" {{on "change" this.yourOnChangeFunction}} as |F|>
     <F.Label>DC1</F.Label>
     <F.HelperText>CoreSite- K Street</F.HelperText>
-  </G.Radio::Field>
-  <G.Radio::Field @id="datacenter-NYC2" @value="NYC2" {{on "change" this.yourOnChangeFunction}} as |F|>
+  </G.RadioField>
+  <G.RadioField @id="datacenter-NYC2" @value="NYC2" {{on "change" this.yourOnChangeFunction}} as |F|>
     <F.Label>NYC1</F.Label>
     <F.HelperText>H5 Data Center - 325 Hudson Street</F.HelperText>
-  </G.Radio::Field>
-  <G.Radio::Field @id="datacenter-SF1" @value="SF1" {{on "change" this.yourOnChangeFunction}} as |F|>
+  </G.RadioField>
+  <G.RadioField @id="datacenter-SF1" @value="SF1" {{on "change" this.yourOnChangeFunction}} as |F|>
     <F.Label>SF1</F.Label>
     <F.HelperText>INAP - 650 Townsend Street</F.HelperText>
-  </G.Radio::Field>
+  </G.RadioField>
 </Hds::Form::Radio::Group>
 ```
 
@@ -198,7 +191,7 @@ The basic invocation for a Field component creates:
 - a `<input type="radio">` control with an automatically generated `ID` attribute.
 
 ```handlebars
-<Hds::Form::Radio::Field name="data-center" @value="SF1" {{on "change" this.yourOnChangeFunction}} as |F|>
+<Hds::Form::Radio::Field name="data-center-radio" @value="SF1" {{on "change" this.yourOnChangeFunction}} as |F|>
   <F.Label>SF1</F.Label>
 </Hds::Form::Radio::Field>
 ```
@@ -207,7 +200,7 @@ The basic invocation for a Base component creates an `<input type="radio">` cont
 
 ```handlebars
 <Hds::Form::Radio::Base
-  name="data-center"
+  name="data-center-radio2"
   aria-label="San Francisco datacenter number 1"
   @value="SF1"
   {{on "change" this.yourOnChangeFunction}}

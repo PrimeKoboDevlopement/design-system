@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import fs from 'fs-extra';
 import cheerio  from 'cheerio';
 import { uniq } from 'lodash';
@@ -42,9 +47,19 @@ export async function generateBundleSVG({ config, catalog } : { config: ConfigDa
         allIcons.push(`'${iconName}'`);
     }
 
-    // add CSS used to animate "loading" and "running" icons
-    await fs.writeFile(`${config.mainFolder}/svg/animation.css`, getCssForIconAnimation());
+    const animationIconCss : string = await getCssForIconAnimation();
 
+    // add CSS used to animate "loading" and "running" icons
+    await fs.writeFile(`${config.mainFolder}/svg/animation.css`, animationIconCss);
+   
     // generate an "index.js" file
-    await fs.writeFile(`${config.mainFolder}/svg/index.js`, `export const iconNames = [ ${uniq(allIcons).join(', ')} ];`);
+    let svgModuleContent = '/**\n * Copyright (c) HashiCorp, Inc.\n * SPDX-License-Identifier: MPL-2.0\n */\n\n';
+    svgModuleContent += `export const iconNames = [ ${uniq(allIcons).join(', ')} ];`;
+    await fs.writeFile(`${config.mainFolder}/svg/index.js`, svgModuleContent);
+
+    // generate an "index.d.ts" file
+    let svgModuleDeclarationContent = '/**\n * Copyright (c) HashiCorp, Inc.\n * SPDX-License-Identifier: MPL-2.0\n */\n\n';
+    svgModuleDeclarationContent += `export declare const iconNames: readonly [${uniq(allIcons).join(', ')}];\n`;
+    svgModuleDeclarationContent += `export type IconName = typeof iconNames[number];\n`;
+    await fs.writeFile(`${config.mainFolder}/svg/index.d.ts`, svgModuleDeclarationContent);
 }

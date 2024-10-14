@@ -1,13 +1,14 @@
 ---
 title: Pagination
-hidden: true
 description: Used to let users navigate through content broken down into pages. Usually paired with tables.
 caption: Used to let users navigate through content broken down into pages.
-status: experimental
 links:
   figma: https://www.figma.com/file/noyY6dUMDYjmySpHcMjhkN/HDS-Product---Components?node-id=18709%3A42011&t=pIE459t8qucXP9uR-1
-  github: 
+  github: https://github.com/hashicorp/design-system/tree/main/packages/components/src/components/hds/pagination
+related: ['components/table','patterns/filter-patterns', 'patterns/table-multi-select']
 previewImage: assets/illustrations/components/pagination.jpg
+status:
+  updated: 4.10.0
 ---
 
 <section data-tab="Guidelines">
@@ -18,7 +19,6 @@ previewImage: assets/illustrations/components/pagination.jpg
 <section data-tab="Code">
   @include "partials/code/how-to-use.md"
   @include "partials/code/component-api.md"
-  @include "partials/code/showcase.md"
 </section>
 
 <section data-tab="Specifications">
@@ -29,3 +29,8 @@ previewImage: assets/illustrations/components/pagination.jpg
 <section data-tab="Accessibility">
   @include "partials/accessibility/accessibility.md"
 </section>
+
+<section data-tab="Version history">
+  @include "partials/version-history/4.10.0.md"
+</section>
+

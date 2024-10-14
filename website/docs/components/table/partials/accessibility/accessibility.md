@@ -7,31 +7,20 @@ When used as recommended, there should not be any WCAG conformance issues with t
 
 ## Focus in Tables
 
-- Focus will only move through sortable headers and will skip over non-sortable headers as they aren't interactive. 
+- Table headers and labels are not eligible to receive focus, rather, focus will move through interactive elements (sort and tooltip buttons) contained within the header sequentially.
 - Interactive elements within cells will receive focus, but entire cells and entire rows will not. 
 
 !!! Do
 
-![Example of focus order being properly applied to a table](/assets/components/table/table-cell-focus-do.png =936x*)
+![Example of focus order being properly applied to a table](/assets/components/table/table-cell-focus-do.png)
 !!!
 
 !!! Dont
 
-![Example of focus order being incorrectly applied to a table](/assets/components/table/table-cell-focus-dont.png =938x*)
+![Example of focus order being incorrectly applied to a table](/assets/components/table/table-cell-focus-dont.png)
 !!!
 
 ## Best practices
-
-### Tooltips in headers
-
-Since columns within the table header can control sorting within the table, the header column is not eligible to receive additional interactive elements such as tooltip/toggletip or other components that rely on interactivity to display content (nested interactive elements).
-
-If you need a tooltip, there may not be enough contextual information about the table or the label within the header may not be clear enough.
-
-!!! Dont
-
-![Example of a nested tooltip within a table header](/assets/components/table/table-accessibility-tooltip.png =900x*)
-!!!
 
 ### Interactive rows
 
@@ -45,10 +34,8 @@ When providing additional or alternative styles to the table element, do not cha
 
 This section is for reference only. This component intends to conform to the following WCAG Success Criteria:
 
-<Doc::WcagList @criteriaList={{array "1.3.1" "1.3.2" "1.4.1" "1.4.3" "1.4.4" "1.4.10" "1.4.11" "1.4.12" "1.4.13" "2.1.1" "2.1.2" "2.1.4" "2.4.3" "2.4.7" "4.1.1" "4.1.2" }} />
+<Doc::WcagList @criteriaList={{array "1.3.1" "1.3.2" "1.4.1" "1.4.3" "1.4.4" "1.4.10" "1.4.11" "1.4.12" "1.4.13" "2.1.1" "2.1.2" "2.1.4" "2.4.3" "2.4.7" "4.1.2" }} />
 
 ---
 
-## Support
-
-If any accessibility issues have been found within this component, let us know by [submitting an issue](https://github.com/hashicorp/design-system/issues/new/choose).
+<Doc::A11ySupport />

@@ -5,31 +5,34 @@ on:
     branches:
       - main
 
+env:
+  NODE_VERSION: '20.x'
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
-      - name: Setup Node.js 16.x
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
         with:
-          node-version: 16.x
+          node-version: ${{ env.NODE_VERSION }}
           cache-dependency-path: yarn.lock
 
       - name: Install Dependencies
         run: yarn
 
       - name: Create Release Pull Request
-        uses: changesets/action@v1
+        uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
         with:
-          version: yarn version
-          publish: yarn release
+          version: yarn version-packages
+          publish: yarn release-packages
         env:
           # Token setup in hashibot-hds' account
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

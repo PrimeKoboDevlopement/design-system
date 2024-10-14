@@ -1,4 +1,13 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 'use strict';
+
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 module.exports = function (environment) {
   let ENV = {
@@ -22,6 +31,9 @@ module.exports = function (environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      ALGOLIA_APPLICATION_ID: process.env.ALGOLIA_APPLICATION_ID,
+      ALGOLIA_API_KEY_SEARCH: process.env.ALGOLIA_API_KEY_SEARCH,
+      ALGOLIA_INDEX_ID: process.env.ALGOLIA_INDEX_ID,
     },
 
     fastboot: {

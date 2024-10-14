@@ -1,5 +1,7 @@
 ## Component API
 
+### Card::Container
+
 <Doc::ComponentApi as |C|>
   <C.Property @name="level" @type="enum" @values={{array "base" "mid" "high" }} @default="base">
     Controls the level of elevation (amount of "shadow" effect).
@@ -13,10 +15,10 @@
   <C.Property @name="background" @type="enum" @values={{array "neutral-primary" "neutral-secondary" }} @default="neutral-primary">
     Controls the background color.
   </C.Property>
-  <C.Property @name="hasBorder" @type="boolean" @values={{array "false" "true" }} @default="false">
-    Controls whether or not the card has a visible external border.
+  <C.Property @name="hasBorder" @type="boolean" @default="false">
+    Controls whether or not the Card has a visible external border.
   </C.Property>
-  <C.Property @name="overflow" @type="enum" @values={{array "hidden" "visible" }} @default="hidden">
+  <C.Property @name="overflow" @type="enum" @values={{array "visible" "hidden" }} @default="visible">
     Controls the "overflow" property for the component.
   </C.Property>
   <C.Property @name="...attributes">

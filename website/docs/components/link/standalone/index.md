@@ -2,23 +2,22 @@
 title: Standalone Link
 description: A link used in isolation and not as a part of surrounding body text.
 caption: A link used in isolation and not as a part of surrounding body text.
-status: released
 links:
   figma: https://www.figma.com/file/noyY6dUMDYjmySpHcMjhkN/HDS-Product---Components?node-id=2365%3A21590&t=XC8SUxxJOFHgqYzK-1
-  github: https://github.com/hashicorp/design-system/tree/main/packages/components/addon/components/hds/link
+  github: https://github.com/hashicorp/design-system/tree/main/packages/components/src/components/hds/link
+related: ['components/link/inline','components/button']
 previewImage: assets/illustrations/components/link/standalone.jpg
-keywords: ['hyperlink', 'anchor', 'external link', 'text link', 'cta']
+navigation:
+  keywords: ['hyperlink', 'anchor', 'external link', 'text link', 'cta']
 ---
 
 <section data-tab="Guidelines">
-  @include "partials/guidelines/overview.md"
   @include "partials/guidelines/guidelines.md"
 </section>
 
 <section data-tab="Code">
   @include "partials/code/how-to-use.md"
-  @include "partials/code/component-api.md"
-  <!-- @include "partials/code/showcase.md" -->
+  @include "partials/code/component-api.md"  
 </section>
 
 <section data-tab="Specifications">

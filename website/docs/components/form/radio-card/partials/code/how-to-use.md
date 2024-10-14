@@ -8,7 +8,7 @@
 
 !!! Warning
 
-The `<Hds::Form::RadioCard::Group>` component does not provide the logic for handling the mutually exclusive nature of radio controls (when a radio card is checked, any other radio cards with the same name that were previously checked become unchecked). You can implement this yourself in an `\{{on "change" this.onChange}}` function or manage the `checked` state of radio cards by updating the underlying data.
+The `<Hds::Form::RadioCard::Group>` component does not provide the logic for handling the mutually exclusive nature of radio controls (when a Radio Card is checked, any other Radio Cards with the same name that were previously checked become unchecked). You can implement this yourself in an `\{{on "change" this.onChange}}` function or manage the `checked` state of Radio Cards by updating the underlying data.
 !!!
 
 The `@name` argument offers an easy way to provide the same name for all the radio controls with a single declaration.
@@ -39,7 +39,7 @@ The `@name` argument offers an easy way to provide the same name for all the rad
 
 ### Custom content
 
-Customizable options include: 
+Customizable options include:
 
 - Defining custom content using the `Generic` block
 - Defining a custom width using the `maxWidth` argument
@@ -48,29 +48,55 @@ Customizable options include:
 ```handlebars
 <Hds::Form::RadioCard::Group @name="radio-card-custom-example" as |G|>
   <G.Legend>Cluster type</G.Legend>
-  <G.RadioCard @maxWidth="33%" @checked={{true}} {{on "change" this.onChange}} as |R|>
+  <G.RadioCard @checked={{true}} {{on "change" this.onChange}} as |R|>
     <R.Label>HCP-managed Consul</R.Label>
     <R.Badge @text="6 clusters left" />
     <R.Generic>
-      <ul>
-        <li>Connect workloads in your cloud provider network with HCP</li>
-        <li>Offload Consul operations to Hashicorp Experts</li>
+      <ul class="doc-radio-card-list-demo">
+        <li class="hds-typography-display-100">Connect workloads in your cloud provider network with HCP</li>
+        <li class="hds-typography-display-100">Offload Consul operations to Hashicorp Experts</li>
       </ul>
     </R.Generic>
   </G.RadioCard>
-  <G.RadioCard @maxWidth="33%" {{on "change" this.onChange}} as |R|>
+  <G.RadioCard {{on "change" this.onChange}} as |R|>
     <R.Label>Self-managed Consul</R.Label>
     <R.Badge @text="5 clusters left" />
     <R.Badge @text="Kubernetes only" @icon="kubernetes" />
     <R.Generic>
-      <ul>
-        <li>Multi-cloud artifact registry</li>
-        <li>Golden images workflow</li>
-        <li>Terraform Cloud integration</li>
-        <li>10 free images/month</li>
-        <li>250 free requests/month</li>
+      <ul class="doc-radio-card-list-demo">
+        <li class="hds-typography-display-100">Multi-cloud artifact registry</li>
+        <li class="hds-typography-display-100">Golden images workflow</li>
+        <li class="hds-typography-display-100">Terraform Cloud integration</li>
+        <li class="hds-typography-display-100">10 free images/month</li>
+        <li class="hds-typography-display-100">250 free requests/month</li>
       </ul>
     </R.Generic>
+  </G.RadioCard>
+</Hds::Form::RadioCard::Group>
+```
+
+### Layout and control position
+
+To change how the cards are layed out in a group set the `@layout` argument to `vertical`. To change the position of the control elements within a card set the `@controlPosition` argument to `left`.
+
+```handlebars
+<Hds::Form::RadioCard::Group
+  @name="radio-card-layout-vertical"
+  @layout="vertical"
+  @controlPosition="left" as |G|
+>
+  <G.Legend>Allow this source connect to the destination</G.Legend>
+  <G.RadioCard @checked={{true}} {{on "change" this.onChange}} as |R|>
+    <R.Label>Admin</R.Label>
+    <R.Description>Grants full admin capabilities for this project and all workspaces within. Team members can edit and delete this project, manage the team access level, and create and move workspaces.</R.Description>
+  </G.RadioCard>
+  <G.RadioCard {{on "change" this.onChange}} as |R|>
+    <R.Label>Read</R.Label>
+    <R.Description>Grants full admin capabilities for this project and all workspaces within. Team members can manage the team access level, and create and move workspaces.</R.Description>
+  </G.RadioCard>
+  <G.RadioCard {{on "change" this.onChange}} as |R|>
+    <R.Label>Write</R.Label>
+    <R.Description>Grants full admin capabilities for this project and all workspaces within. Team members can edit this project, manage the team access level, and create and move workspaces.</R.Description>
   </G.RadioCard>
 </Hds::Form::RadioCard::Group>
 ```

@@ -1,16 +1,161 @@
 # @hashicorp/design-system-tokens
 
+## 2.2.1
+
+### Patch Changes
+
+Updated design tokens for Vagrant primary gradient to match Figma.
+
+<small class="doc-whats-new-changelog-metadata">[#2366](https://github.com/hashicorp/design-system/pull/2366)</small>
+
+<div class="doc-whats-new-changelog-separator"></div>
+
+## 2.2.0
+
+### Minor Changes
+
+`AppHeader` - Added design tokens:
+
+- `--token-app-header-height`
+- `--token-app-header-home-link-size`
+- `--token-app-header-logo-size`
+
+<small class="doc-whats-new-changelog-metadata">[#2161](https://github.com/hashicorp/design-system/pull/2161)</small>
+
+<div class="doc-whats-new-changelog-separator"></div>
+
+## 2.1.0
+
+### Minor Changes
+
+Added new pipeline to Style Dictionary for `cloud-email` - `email/sass-variables` to be used in email templating
+
+<small class="doc-whats-new-changelog-metadata">[#1965](https://github.com/hashicorp/design-system/pull/1965)</small>
+
+<div class="doc-whats-new-changelog-separator"></div>
+
+## 2.0.0
+
+### Major Changes
+
+New tokens added for large and medium size `Tab` variants. The "medium" tokens replace the former equivalent tokens which were not differentiated by size.
+
+- `--token-tabs-tab-height-medium` (**Replaces `--token-tabs-tab-height`**)
+- `--token-tabs-tab-height-large` (**New**)
+- `--token-tabs-tab-padding-horizontal-medium` (**Replaces `--token-tabs-tab-padding-horizontal`**)
+- `--token-tabs-tab-padding-horizontal-large` (**New**)
+
+<small class="doc-whats-new-changelog-metadata">[#1937](https://github.com/hashicorp/design-system/pull/1937)</small>
+
+<div class="doc-whats-new-changelog-separator"></div>
+
+## 1.11.0
+
+### Minor Changes
+
+Updated `vault`, `vault-secrets`, and `vault-radar` brand color values
+
+<small class="doc-whats-new-changelog-metadata">[#1914](https://github.com/hashicorp/design-system/pull/1914)</small>
+
+<div class="doc-whats-new-changelog-separator"></div>
+
+Added design token for `terraform-brand-on-dark` color
+
+<small class="doc-whats-new-changelog-metadata">[#1915](https://github.com/hashicorp/design-system/pull/1915)</small>
+
+<div class="doc-whats-new-changelog-separator"></div>
+
+## 1.10.0
+
+### Minor Changes
+
+Added color tokens for “Vault Radar” product
+
+<small class="doc-whats-new-changelog-metadata">[#1904](https://github.com/hashicorp/design-system/pull/1904)</small>
+
+<div class="doc-whats-new-changelog-separator"></div>
+
+## 1.9.0
+
+### Minor Changes
+
+Added design tokens for `SideNav` with `@isCollapsible` (to control if users can collapse the sidenav on 'desktop' viewports) and `@isMinimized` (to control the default state on 'desktop' viewports) arguments
+
+<small class="doc-whats-new-changelog-metadata">[#1630](https://github.com/hashicorp/design-system/pull/1630)</small>
+
+## 1.8.0
+
+### Minor Changes
+
+Added color tokens for “Vault Secrets” product
+
+<small class="doc-whats-new-changelog-metadata">[#1640](https://github.com/hashicorp/design-system/pull/1640)</small>
+
+## 1.7.0
+
+### Minor Changes
+
+Added JSON output format for `marketing` target (and in the process refactored internal logic for tokens generation)
+
+<small class="doc-whats-new-changelog-metadata">[#1513](https://github.com/hashicorp/design-system/pull/1513) - Thanks [@dstaley](https://github.com/dstaley) for the contribution! 🙏 </small>
+
+## 1.6.0
+
+### Minor Changes
+
+Added design token for loading state icon on search input
+
+<small class="doc-whats-new-changelog-metadata">[#1452](https://github.com/hashicorp/design-system/pull/1452)</small>
+
+## 1.5.0
+
+### Minor Changes
+
+- Added new `TooltipButton` component and `hds-tooltip` modifier
+- Added design tokens for `Tooltip`
+
+<small class="doc-whats-new-changelog-metadata">[#1283](https://github.com/hashicorp/design-system/pull/1283)</small>
+
+## 1.4.2
+
+### Patch Changes
+
+Added design tokens for `SideNav` component
+
+<small class="doc-whats-new-changelog-metadata">[#1313](https://github.com/hashicorp/design-system/pull/1313)</small>
+
+## 1.4.1
+
+### Patch Changes
+
+- Scoped group layout styles to nested child components.
+- Fixed bug with `--token-pagination-child-spacing-vertical` value so that it adds "px" unit.
+
+<small class="doc-whats-new-changelog-metadata">[#1204](https://github.com/hashicorp/design-system/pull/1204)</small>
+
+## 1.4.0
+
+### Minor Changes
+
+Added design tokens for `Pagination` component
+
+<small class="doc-whats-new-changelog-metadata">[#661](https://github.com/hashicorp/design-system/pull/661)</small>
+
 ## 1.3.1
 
 ### Patch Changes
 
-- [#1036](https://github.com/hashicorp/design-system/pull/1036) [`b1756288e`](https://github.com/hashicorp/design-system/commit/b1756288e907dd36784fd33921e016d99a1b3417) Thanks [@Dhaulagiri](https://github.com/Dhaulagiri)! - Update design system name to Helios
+Updated design system name to "Helios"
+
+<small class="doc-whats-new-changelog-metadata">[#1036](https://github.com/hashicorp/design-system/pull/1036)</small>
 
 ## 1.3.0
 
 ### Minor Changes
 
-- [#740](https://github.com/hashicorp/design-system/pull/740) [`92c83961f`](https://github.com/hashicorp/design-system/commit/92c83961f0e8b01e52e3c596c85871ec5cf8c94d) Thanks [@alex-ju](https://github.com/alex-ju)! - Add design tokens for indeterminate `Checkbox`
+Added design tokens for indeterminate `Checkbox`
+
+<small class="doc-whats-new-changelog-metadata">[#740](https://github.com/hashicorp/design-system/pull/740)</small>
 
 ## 1.2.0
 

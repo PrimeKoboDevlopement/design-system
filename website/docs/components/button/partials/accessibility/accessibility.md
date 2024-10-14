@@ -22,10 +22,8 @@ Users with assistive technology (AT) or keyboard-only users rely on the semantic
 
 This section is for reference only. This component intends to conform to the following WCAG Success Criteria:
 
-<Doc::WcagList @criteriaList={{array "1.4.1" "1.4.3" "1.4.4" "1.4.10" "1.4.11" "1.4.12" "2.1.1" "2.4.7" "4.1.1" "4.1.2" }} />
+<Doc::WcagList @criteriaList={{array "1.4.1" "1.4.3" "1.4.4" "1.4.10" "1.4.11" "1.4.12" "2.1.1" "2.4.7" "4.1.2" }} />
 
 ---
 
-## Support
-
-If any accessibility issues have been found within this component, let us know by [submitting an issue](https://github.com/hashicorp/design-system/issues/new/choose).
+<Doc::A11ySupport />

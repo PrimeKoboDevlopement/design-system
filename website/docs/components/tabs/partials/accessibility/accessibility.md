@@ -21,8 +21,8 @@ Activate tab to display matching content area
 
 ![Keyboard tab navigation example](/assets/components/tabs/tab-spacebar-enter.png =402x*)
 
-<Doc::Badge @type="neutral"><FlightIcon @name="arrow-left" /></Doc::Badge>
-<Doc::Badge @type="neutral"><FlightIcon @name="arrow-right" /></Doc::Badge>
+<Doc::Badge @type="neutral"><Hds::Icon @name="arrow-left" /></Doc::Badge>
+<Doc::Badge @type="neutral"><Hds::Icon @name="arrow-right" /></Doc::Badge>
 
 Move between tabs
 
@@ -41,10 +41,8 @@ Move to interactive element within the content area
 
 ## Applicable WCAG Success Criteria
 
-<Doc::WcagList @criteriaList={{array "1.3.1" "1.3.2" "1.4.1" "1.4.3" "1.4.4" "1.4.10" "1.4.11" "1.4.12" "1.4.13" "2.1.1" "2.1.2" "2.4.6" "2.4.7" "3.2.1" "4.1.1" "4.1.2" }} />
+<Doc::WcagList @criteriaList={{array "1.3.1" "1.3.2" "1.4.1" "1.4.3" "1.4.4" "1.4.10" "1.4.11" "1.4.12" "1.4.13" "2.1.1" "2.1.2" "2.4.6" "2.4.7" "3.2.1" "4.1.2" }} />
 
 ---
 
-## Support
-
-If any accessibility issues have been found within this component, let us know by [submitting an issue](https://github.com/hashicorp/design-system/issues/new/choose).
+<Doc::A11ySupport />

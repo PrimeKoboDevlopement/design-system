@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import * as FigmaExport from '@figma-export/types';
 
 import { AssetCoreData, AssetsMetadata } from '../@types/AssetsMetadata';
@@ -25,6 +30,7 @@ export function getAssetsCatalog({ config, assetsMetadata, figmaExportPageNode }
             fileName: getAssetFileName(assetCoreData),
             iconName: assetCoreData.iconName,
             description: assetCoreData.description,
+            category: assetCoreData.category,
             size: assetCoreData.variantProps?.size || '',
             width: component.absoluteBoundingBox.width,
             height: component.absoluteBoundingBox.width,

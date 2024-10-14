@@ -1,12 +1,18 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/1672302/213473448-ac8cd0f7-cde2-49ef-b8ef-4067677569f2.jpg" role="presentation" alt="">
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/hashicorp/design-system/assets/788096/5d6969b7-f8b4-4ad3-9ece-b16b4527522e" width="300">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/hashicorp/design-system/assets/788096/8e278094-427f-40cc-912f-9ccd3a0ff879" width="300">
+  <img alt="Helios Design System" src="https://github.com/hashicorp/design-system/assets/788096/8e278094-427f-40cc-912f-9ccd3a0ff879.png" width="300">
+</picture>
 
-<p align="center">The Helios Design System provides the building blocks to design and implement consistent, accessible, and delightful product experiences across HashiCorp.</p>
+The Helios Design System provides the building blocks to design and implement consistent, accessible, and delightful product experiences across HashiCorp.
 
 ## Usage
 
 For guidelines on how to use Helios, see our [documentation website](https://helios.hashicorp.design).
+
+## Release notes
+
+[A changelog for code and Figma changes is kept on the Helios website](https://helios.hashicorp.design/whats-new/release-notes)
 
 ## Packages
 
@@ -20,7 +26,7 @@ Design System components in Ember.js
 
 ### `packages/ember-flight-icons` [![npm version](https://badge.fury.io/js/%40hashicorp%2Fember-flight-icons.svg)](https://badge.fury.io/js/%40hashicorp%2Fember-flight-icons)
 
-Ember.js addon with `<FlightIcon />` component
+Ember.js addon with `<FlightIcon />` component (deprecated)
 
 - npm package: `@hashicorp/ember-flight-icons`
 - website: [https://helios.hashicorp.design/icons/library](https://helios.hashicorp.design/icons/library)
@@ -82,23 +88,9 @@ See the [changeset docs](https://github.com/changesets/changesets/blob/main/docs
 
 Note: If you want to ignore a changeset bump in terminal (e.g. major bump for selected "package x" is N/A, want a patch release), press return on the command line to skip that step. Press the spacebar to select that step.
 
-### Releasing
+## Releasing
 
-Release PRs are created and automatically updated on every PR merge by the [changeset GitHub action](https://github.com/changesets/action). Once we are ready to do a release, the PR – titled `Version Packages` – can be approved and merged to `main`, and the changes will be released to npm automatically.
-
-#### Local testing of versioning
-
-You can simulate the versioning experience locally with this command:
-
-```bash
-yarn changeset version
-```
-
-In order for this step to complete successfully you'll need to create a personal access token [in GitHub](https://github.com/settings/tokens). The name could be anything e.g. `design-system`, with `read:user` and `repo:status` scopes, and then add the token to a `.env` file in the project's root.
-
-```bash
-GITHUB_TOKEN=YOUR-TOKEN-HERE
-```
+See the [release docs](packages/components/RELEASE.md) for the process we follow to publish a new package version.
 
 ## License
 

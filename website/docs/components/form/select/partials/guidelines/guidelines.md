@@ -1,3 +1,11 @@
+!!! Info
+
+**This component uses a native HTML element**
+
+It's not possible to customize options within this component as it is a native HTML element and uses browser defaults to render it. Find more information [on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select).
+
+!!!
+
 ## Usage
 
 ### When to use
@@ -37,7 +45,7 @@ For shorter, simpler forms (e.g., login/signup and feedback requests), indicate 
 
 ## Error validation
 
-For error validation recommendations, refer to the [Primitives](/components/form/primitives) documentation.
+For error validation recommendations, refer to the [Form patterns](/patterns/form-patterns?tab=validation) documentation.
 
 ## Content
 

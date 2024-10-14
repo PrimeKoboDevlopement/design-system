@@ -1,27 +1,29 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-
-import {
-  SIZES,
-  COLORS,
-} from '@hashicorp/design-system-components/components/hds/button';
+import { tracked } from '@glimmer/tracking';
 
 export default class Index extends Component {
-  get STATES() {
-    // these are used only for presentation purpose in the showcase
-    return ['default', 'hover', 'active', 'focus', 'disabled'];
-  }
+  @tracked isLoading = false;
+  @tracked timer;
 
-  get SIZES() {
-    return SIZES;
-  }
+  @action
+  toggleIsLoading() {
+    this.isLoading = !this.isLoading;
 
-  get COLORS() {
-    return COLORS;
+    clearTimeout(this.timer);
+    // make it go back to the idle state
+    this.timer = setTimeout(() => {
+      this.isLoading = false;
+    }, 4000);
   }
 
   @action
-  copyToClipboard() {
-    console.log('Clicked "Copy to clipboard" button!');
+  alertOnClick() {
+    alert('Hello from Helios!');
   }
 }

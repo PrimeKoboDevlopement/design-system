@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 // SIDECAR
 
 @use "../../breakpoints" as breakpoint;
@@ -74,11 +79,4 @@
 
 .doc-page-sidecar__item--depth-3 {
   --padding-left: 24px;
-}
-
-
-// SPECIAL CLASS FOR HEADINGS
-
-.doc-page-sidecar-scroll-margin-top {
-  scroll-margin-top: calc(var(--doc-page-header-height) + 20px);
 }

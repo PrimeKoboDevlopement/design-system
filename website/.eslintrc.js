@@ -2,12 +2,16 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
       legacyDecorators: true,
+    },
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
     },
   },
   plugins: ['ember'],
@@ -19,7 +23,18 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'comma-dangle': [
+      'error',
+      {
+        arrays: 'always-multiline',
+        objects: 'always-multiline',
+        imports: 'always-multiline',
+        exports: 'always-multiline',
+        functions: 'only-multiline',
+      },
+    ],
+  },
   overrides: [
     // node files
     {

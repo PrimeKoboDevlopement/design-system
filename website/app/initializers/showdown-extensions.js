@@ -3,6 +3,12 @@
 
 import showdown from 'showdown';
 
+const uniqueId = () => {
+  return ([3e7] + -1e3 + -4e3 + -2e3 + -1e11).replace(/[0-3]/g, (a) =>
+    ((a * 4) ^ ((Math.random() * 16) >> (a & 2))).toString(16)
+  );
+}
+
 export function initialize(/* application */) {
   // Overriding `unhashHTMLSpans` subparser to overcome the 10 levels of nesting limit
   showdown.subParser('unhashHTMLSpans', function (text, options, globals) {
@@ -14,12 +20,12 @@ export function initialize(/* application */) {
       options,
       globals
     );
-  
+
     for (var i = 0; i < globals.gHtmlSpans.length; ++i) {
       var repText = globals.gHtmlSpans[i],
         // limiter to prevent infinite loop (assume 50 as limit for recurse)
         limit = 0;
-  
+
       while (/¨C(\d+)C/.test(repText)) {
         var num = RegExp.$1;
         repText = repText.replace('¨C' + num + 'C', globals.gHtmlSpans[num]);
@@ -31,7 +37,7 @@ export function initialize(/* application */) {
       }
       text = text.replace('¨C' + i + 'C', repText);
     }
-  
+
     text = globals.converter._dispatch(
       'unhashHTMLSpans.after',
       text,
@@ -58,7 +64,7 @@ export function initialize(/* application */) {
         var end = (options.omitExtraWLInCodeBlocks) ? '' : '\n';
 
         let codeblock = inputCodeblock;
-        
+
         // We encode the codeblock so we can safely pass multi-line code and ember syntax to the `Doc::CopyButton` component
         let codeblockEncoded =  encodeURI(inputCodeblock);
 
@@ -71,6 +77,7 @@ export function initialize(/* application */) {
         let match = languageBlock.match(/(\w+)({(.*)})?/);
         let language = '';
         let attributeString = '';
+        let encodedCodeBlock = '';
 
         if(match && match[1]) {
           language = match[1];
@@ -86,21 +93,23 @@ export function initialize(/* application */) {
           language = 'shell';
         }
 
-        let highlightedCodeBlock = Prism.highlight(codeblock, Prism.languages[language], language) + end;
+        // we encode the codeblock and present it as is (without highlight)
+        encodedCodeBlock = Prism.util.encode(codeblock) + end;
 
         // escape { and } for the code sample
-        highlightedCodeBlock = highlightedCodeBlock.replace(/{/g, '&#123;').replace(/}/g, '&#125;')
+        encodedCodeBlock = encodedCodeBlock.replace(/{/g, '&#123;').replace(/}/g, '&#125;')
 
-        let preBlock = `<pre class="doc-code-block__code-snippet language-${language}"><code ${language ? `class="${language} language-${language}"` : ''}>${highlightedCodeBlock}</code></pre>`;
+        let blockUniqueId = uniqueId();
+        let preBlock = `<pre id="pre-block-${blockUniqueId}" class="doc-code-block__code-snippet language-${language}" tabindex="0"><code ${language ? `class="${language} language-${language}"` : ''}>${encodedCodeBlock}</code></pre>`;
 
         let autoExecuteLanguages = ['html', 'handlebars', 'hbs'];
 
         let selfExecutingBlock = "";
         selfExecutingBlock += '<div class="doc-code-block doc-code-block--self-executing">';
-        selfExecutingBlock += '  <div class="doc-code-block__code-rendered">';
+        selfExecutingBlock += `  <div class="doc-code-block__code-rendered">`;
         selfExecutingBlock += `    ${inputCodeblock}`;
         selfExecutingBlock += '  </div>';
-        selfExecutingBlock += `  <Doc::CopyButton @type="solid" @textToCopy='${codeblockEncoded}' @encoded={{true}} />`;
+        selfExecutingBlock += `  <Doc::CopyButton @id='${blockUniqueId}' @type="solid" @textToCopy='${codeblockEncoded}' @encoded={{true}} aria-labelledby="copy-label-${blockUniqueId} pre-block-${blockUniqueId}"/>`;
         selfExecutingBlock += `  ${preBlock}`;
         selfExecutingBlock += '</div>';
 
@@ -132,5 +141,5 @@ export function initialize(/* application */) {
 }
 
 export default {
-  initialize
+  initialize,
 };

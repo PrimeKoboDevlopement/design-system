@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import { module, test } from 'qunit';
 import { fillIn, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'website/tests/helpers';
@@ -33,6 +38,6 @@ module('Acceptance | Token Search', function (hooks) {
   test('should show message when no results are found', async function (assert) {
     await visit('/foundations/tokens?searchQuery=wubalubadubdub');
 
-    assert.dom('[data-test-target="token-not-found"]').exists();
+    assert.dom('[data-test-target="no-tokens-found"]').exists();
   });
 });

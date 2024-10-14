@@ -1,6 +1,6 @@
 ### :pushpin: Summary
 
-<!-- If merged, this PR.... 
+<!-- If merged, this PR....
 This should be a short TL;DR that includes the purpose of the PR.
 -->
 
@@ -20,9 +20,9 @@ Figma file: [if it applies]
 
 ***
 
-### 👀 Reviewer's checklist:
+### 👀 Component checklist
 
-- [ ] +1 Percy if applicable
-- [ ] Confirm that PR has a changelog update via [Changesets](https://github.com/changesets/changesets) if needed
+- [ ] Percy was checked for any visual regression
+- [ ] A changelog entry was added via [Changesets](https://github.com/changesets/changesets) if needed (see [templates here](https://hashicorp.atlassian.net/wiki/spaces/HDS/pages/3243114706/Changelog+authoring+best+practices#Templates))
 
 :speech_balloon: Please consider using [conventional comments](https://conventionalcomments.org/) when reviewing this PR.

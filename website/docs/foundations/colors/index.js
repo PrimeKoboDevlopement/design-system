@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import Component from '@glimmer/component';
 
 import TOKENS_RAW from '@hashicorp/design-system-tokens/dist/docs/products/tokens.json';
@@ -21,7 +26,7 @@ export default class Colors extends Component {
             }
             colors['palette'][tone].push({
               colorName: token.path[2],
-              cssVariable: token.name,
+              cssVariable: `--${token.name}`,
               value: token.value,
             });
           } else if (token.group === 'semantic') {
@@ -31,7 +36,7 @@ export default class Colors extends Component {
             }
             const tokenObj = {
               colorName: `${token.path[1]}-${token.path[2]}`,
-              cssVariable: token.name,
+              cssVariable: `--${token.name}`,
               value: token.value,
             };
             if (['foreground', 'page', 'surface', 'border'].includes(context)) {
@@ -46,7 +51,7 @@ export default class Colors extends Component {
             }
             colors['branding'][brand].push({
               colorName: `${token.path[1]}-${token.path[2]}`,
-              cssVariable: token.name,
+              cssVariable: `--${token.name}`,
               value: token.value,
             });
           } else {

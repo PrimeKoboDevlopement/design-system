@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 // ABOUT > PRINCIPLES
 
 @use "../../typography/mixins" as *;
@@ -10,7 +15,7 @@
   padding: 0;
   list-style: none;
 
-  @include breakpoint.medium-and-above () {
+  @include breakpoint.medium () {
     grid-template-columns: repeat(2, 1fr);
   }
 }

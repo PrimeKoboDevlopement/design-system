@@ -1,20 +1,30 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-
-import { TYPES } from '@hashicorp/design-system-components/components/hds/form/text-input/base';
+import { tracked } from '@glimmer/tracking';
 
 export default class Index extends Component {
-  get STATES() {
-    // these are used only for presentation purpose in the showcase
-    return ['default', 'hover', 'focus'];
-  }
+  @tracked value1 = 'my-cluster-1234';
+  @tracked value2 = 'my-cluster-1234';
+  @tracked value3 = 'my-cluster-1234';
+  @tracked value4 = 'my-cluster-1234';
+  @tracked value5 = 'my-cluster-1234';
+  @tracked minLength = 30;
 
-  get TYPES() {
-    return TYPES;
+  get fieldIsInvalid() {
+    return this.value5.length && this.value5.length < this.minLength;
   }
 
   @action
   yourOnBlurFunction() {
     console.log('Invoked "yourOnBlurFunction"');
+  }
+
+  @action updateValue(propName, event) {
+    this[propName] = event.target.value;
   }
 }

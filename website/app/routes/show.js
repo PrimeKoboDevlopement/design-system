@@ -13,10 +13,22 @@ import { reject } from 'rsvp';
 
 export default class ShowRoute extends Route {
   @service router;
+  queryParams = {
+    selectedTab: {
+      refreshModel: true,
+    },
+  };
+
+  modelCache = {};
 
   model(params) {
     // remove trailing slash
-    let path = params.path.replace(/\/$/, '');
+    const path = params.path.replace(/\/$/, '');
+
+    // If the model is cached, return it
+    if (this.modelCache[path]) {
+      return this.modelCache[path];
+    }
 
     // redirect if `index` is added to the URL
     if (path.endsWith('/index')) {
@@ -80,13 +92,12 @@ export default class ShowRoute extends Route {
           'title',
           'description',
           'caption',
-          'status',
           'links',
+          'related',
           'layout',
-          'hidden',
-          'order',
-          'previewImage',
-          'keywords',
+          'previewImage', // this is needed by the `head-data` to generate the `og:image` in the page <head>
+          'navigation',
+          'status',
         ];
         frontmatterAttributes.forEach((attribute) => {
           if (attribute in res.data.attributes) {
@@ -99,16 +110,46 @@ export default class ShowRoute extends Route {
         const hasCover = frontmatter?.layout?.cover ?? true;
         // TODO! probably we should also check if we have TOC data for the sidecar
         const hasSidecar = frontmatter?.layout?.sidecar ?? true;
+        const showContentId = `show-content-${res.data.id
+          .replace(/\/index$/, '')
+          .replaceAll('/', '-')}`;
 
-        return {
+        // associate the "related components" urls declared in the the frontmatter
+        // with the `pageAttributes` metadata for that component coming from the TOC object
+        let relatedComponents = [];
+        if (frontmatter.related) {
+          frontmatter.related.map((relatedComponent) => {
+            const relatedComponentData = toc.flat.find(
+              (item) => item.pageURL === relatedComponent
+            );
+            if (relatedComponentData) {
+              relatedComponents.push({
+                ...relatedComponentData.pageAttributes,
+                pageURL: relatedComponentData.pageURL,
+              });
+            } else {
+              console.error(
+                `The related component '${relatedComponent}' doesn't have a valid path in the frontmatter block of this page.`
+              );
+            }
+          });
+        }
+
+        this.modelCache[path] = {
           // IMPORTANT: this is the "component" ID which is used to get the correct backing class for the markdown "component"
           // This ID comes from the markdown-to-json conversion (see `id: relativePath.replace(/\.md$/, '')` in `addons/field-guide/lib/markdown-to-jsonapi.js`)
           id: res.data.id, // eg. 'components/alert/index'
           ...res.data.attributes,
+          // this is used to target in CSS specific content in the `show` pages
+          showContentId, // eg. show-content-components-alert
+          // extra metadata for this page
           frontmatter,
           hasCover,
           hasSidecar,
+          relatedComponents,
         };
+
+        return this.modelCache[path];
       });
   }
 

@@ -36,7 +36,7 @@ Use color logically.
 
 ### Alternative color usage
 
-Badges can also indicate different account levels: 
+Badges can also indicate different account levels:
 
 <Hds::Badge @color="critical" @type="filled" @icon="award" @text="Bronze" />
 <Hds::Badge @color="neutral" @type="filled" @icon="award" @text="Silver" />
@@ -109,13 +109,6 @@ For example:
 - use large Badges when inline with a heading
 - use small or medium Badges in tables, depending on the data density
 
-!!! Insight
-
-**Structure migration tip**
-
-Use small Badges in place of Structure Badges.
-!!!
-
 ## Icon
 
 Badges come in a few icon and text combinations; text only, icon only, and icon + text (where the icon is in the leading position). Use icons intentionally and only when they provide the user with extra value.
@@ -124,12 +117,19 @@ Badges come in a few icon and text combinations; text only, icon only, and icon 
 <Hds::Badge @color="neutral" @type="filled" @icon="corner-down-left" @isIconOnly={{true}} @text="Icon only" />
 <Hds::Badge @color="neutral" @type="filled" @icon="hexagon" @text="Text + Icon" />
 
+## Using Badges for status
+
+Badges are commonly used to communicate status of items and objects. To avoid relying solely on color as a means to communicate status, we recommend:
+
+- Including an icon that aligns with the intended severity or importance of the status. Some common examples of this are `check` for success, `alert` for warning, and `x` for critical.
+- Using explicit, straightforward language when communicating status, e.g., for items that are in a positive state, use "Successful" or "Active".
+
+<Hds::Badge @color="success" @type="filled" @icon="check" @text="Successful" />
+<Hds::Badge @color="warning" @type="filled" @icon="alert-triangle" @text="Degraded" />
+<Hds::Badge @color="critical" @type="filled" @icon="x" @text="Error" />
+
 ## Content
 
 - Labels should be short and to the point (~25 characters). They should not consist of full sentences but should provide enough context to be useful, especially when using status badges.
 - Use language consistently within each product. For example, when using “In Progress” for one badge, use that same convention throughout the rest of the application.
 - Since Badges are not interactive, they don’t support links. Consider moving the link outside of the Badge instead.
-
-## Related
-
-- [Badge Count](/components/badge-count)

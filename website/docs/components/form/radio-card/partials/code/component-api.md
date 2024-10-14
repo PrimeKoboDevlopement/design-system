@@ -1,4 +1,4 @@
-## Component API 
+## Component API
 
 ### Form::RadioCard
 
@@ -9,23 +9,21 @@
   <C.Property @name="value" @type="string">
     The `value` attribute of the input control.
   </C.Property>
-  <C.Property @name="checked" @type="boolean" @values={{array "false" "true" }} @default="false">
+  <C.Property @name="checked" @type="boolean" @default="false">
     The `checked` attribute of the input control.
   </C.Property>
-  <C.Property @name="disabled" @type="boolean" @values={{array "false" "true" }} @default="false">
+  <C.Property @name="disabled" @type="boolean" @default="false">
     The `disabled` attribute of the input control.
   </C.Property>
   <C.Property @name="controlPosition" @type="enum" @values={{array "bottom" "left" }} @default="bottom">
-    Sets the position of the form control in relation to the card content.
+    Sets the position of the form control in relation to the Radio Card content.
   </C.Property>
   <C.Property @name="alignment" @type="enum" @values={{array "left" "center" }} @default="left">
-    Sets the alignment of the card content.
-  </C.Property>
-  <C.Property @name="layout" @type="enum" @values={{array "fluid" "fixed" }} @default="fluid">
-    By default, the card will expand to fit the parent container. When used in a group the cards will equally share the width to fit the available space. If the `@layout` parameter is set to `fixed` a `@maxWidth` value must be specified to constrain the card.
+    Sets the alignment of the Radio Card content.
   </C.Property>
   <C.Property @name="maxWidth" @type="string" @valueNote="any valid CSS width (%, vw, etc)">
-    When used with a `fluid` layout, this parameter will determine the number of cards shown per row (for example `25%` will result in 4 cards). When used with a `fixed` layout, this parameter will preserve the width of the card and wrap cards on multiple rows if necessary.
+    This parameter will set the width of the card, wrapping cards on multiple rows if necessary.
+    You can use it to define the number of Radio Cards shown per row (for example `25%` will result in 4 cards).
   </C.Property>
   <C.Property @name="extraAriaDescribedBy" @type="string">
     An additional ID attribute to be added to the `aria-describedby` HTML attribute.
@@ -36,8 +34,6 @@
     This component supports use of [`...attributes`](https://guides.emberjs.com/release/in-depth-topics/patterns-for-components/#toc_attribute-ordering).
     <br/><br/>
     The attributes will be applied to the `<input type="radio">` element. This means you can use all the standard HTML attributes of the `<input type="radio">` element and all the usual Ember techniques for event handling, validation, etc.
-    <br/><br/>
-    Some examples of HTML attributes that you will likely use: `id`, `name`, `value`, `checked`, `disabled` ([see whole list here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes)) and some examples of Ember modifiers: `\{{on "click" [do something]}}`, `\{{on "change" [do something]}}`.
   </C.Property>
 </Doc::ComponentApi>
 
@@ -47,23 +43,23 @@
 
 <Doc::ComponentApi as |C|>
   <C.Property @name="<[R].Icon>">
-    Yields an icon inside the card container. For details about its API check the [icon](/icons/usage-guidelines?tab=code) component.
+    Yields an icon inside the Radio Card container. For details about its API, check the [icon](/components/icon?tab=code) component.
   </C.Property>
   <C.Property @name="<[R].Label>" @type="yielded component">
-    A container that yields its content emphasized inside the card.
+    A container that yields its content emphasized inside the Radio Card.
     <br/><br/>
     This component supports use of [`...attributes`](https://guides.emberjs.com/release/in-depth-topics/patterns-for-components/#toc_attribute-ordering).
   </C.Property>
   <C.Property @name="<[R].Badge>">
-    A badge inside the card container. For details about its API check the [Badge](/components/badge) component.
+    A badge inside the Radio Card container. For details about its API, check the [Badge](/components/badge) component.
   </C.Property>
   <C.Property @name="<[R].Description>" @type="yielded component">
-    A container that yields its content inside the card. The content can be a simple string or a more complex/structured one, in which case it inherits the text style.
+    A container that yields its content inside the Radio Card. The content can be a simple string or a more complex/structured one, in which case it inherits the text style.
     <br/><br/>
     This component supports use of [`...attributes`](https://guides.emberjs.com/release/in-depth-topics/patterns-for-components/#toc_attribute-ordering).
   </C.Property>
   <C.Property @name="<[R].Generic>" @type="yielded component">
-    A container that yields its content inside the card. The content does not inherit any styles and can be customized as desired.
+    A container that yields its content inside the Radio Card. The content does not inherit any styles and can be customized as desired.
     <br/><br/>
     This component supports use of [`...attributes`](https://guides.emberjs.com/release/in-depth-topics/patterns-for-components/#toc_attribute-ordering).
   </C.Property>
@@ -73,19 +69,19 @@
 
 <Doc::ComponentApi as |C|>
   <C.Property @name="controlPosition" @type="enum" @values={{array "bottom" "left" }} @default="bottom">
-    Sets the position of the form control in relation to the card content.
+    Sets the position of the form control in relation to the Radio Card content.
   </C.Property>
   <C.Property @name="alignment" @type="enum" @values={{array "left" "center" }} @default="left">
-    Sets the alignment of the card content.
+    Sets the alignment of the Radio Card content.
   </C.Property>
   <C.Property @name="name" @type="string">
     Sets the `name` attribute for each form control within the group.
   </C.Property>
-  <C.Property @name="isRequired" @type="boolean" @values={{array "false" "true" }} @default="false">
+  <C.Property @name="isRequired" @type="boolean" @default="false">
     Appends a `Required` indicator next to the legend text and sets the `required` attribute on the controls when user input is required.
   </C.Property>
-  <C.Property @name="layout" @type="string" @values={{array "fluid" "fixed" }} @default="fluid">
-    By default, the cards will expand to fit the parent container and will equally share the width to fit the available space. If the `@layout` parameter is set to `fixed` a `@maxWidth` value must be specified for each `RadioCard` to constrain them.
+  <C.Property @name="layout" @type="string" @values={{array "horizontal" "vertical" }} @default="horizontal">
+    By default, the Radio Cards will be layed out horizontally, one next to another. Set this property to `vertical` to stack them one underneath each other.
   </C.Property>
 </Doc::ComponentApi>
 
@@ -100,19 +96,21 @@ The group of elements is automatically wrapped in a `<fieldset>` element.
     An optional container that yields its content inside the `<legend>` element. The content can be a simple string, or a more complex/structured one (in which case it inherits the text style). For details about its API check the [`Form::Legend`](/components/form/primitives) component.
   </C.Property>
   <C.Property @name="<[G].HelperText>" @type="yielded component">
-    A container that yields its content inside the "helper text" block (at group level). The content can be a simple string, or a more complex/structured one (in which case it inherits the text style). For details about its API check the [`Form::HelperText`](/components/form/primitives) component.
+    A container that yields its content inside the "helper text" block (at group level). The content can be a simple string, or a more complex/structured one (in which case it inherits the text style). For details about its API, check the [`Form::HelperText`](/components/form/primitives) component.
     <br/><br/>
     The `id` attribute of the element is automatically generated.
   </C.Property>
   <C.Property @name="<[G].RadioCard>" @type="yielded component">
-    Used to yield one or more cards inside the group. For details about its API check the `RadioCard` component above.
+    Used to yield one or more Radio Cards inside the group. For details about its API, check the `RadioCard` component above.
   </C.Property>
   <C.Property @name="<[G].Error>" @type="yielded component">
-    A container that yields its content inside the "error" block (at group level). The content can be a simple string, or a more complex/structured one (in which case it inherits the text style). For details about its API check the [`Form::Error`](/components/form/primitives) component.
+    Container that yields its content inside the "error" block (at group level). The content can be a simple string, or a more complex/structured one (in which case it inherits the text style). For details about its API, check the [`Form::Error`](/components/form/primitives) component.
     <br/><br/>
     The `id` attribute of the `Error` element is automatically generated.
-  </C.Property>
-  <C.Property @name="<[E].Message>" @type="yielded component">
-    If the error is made of multiple messages, you can iterate over a collection of error messages yielding individual items using `Error.Message`.
+    <Doc::ComponentApi as |C|>
+      <C.Property @name="<[E].Message>" @type="yielded component">
+        If the error is made of multiple messages, you can iterate over a collection of error messages yielding individual items using `Error.Message`.
+      </C.Property>
+    </Doc::ComponentApi>
   </C.Property>
 </Doc::ComponentApi>

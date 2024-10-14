@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 // BANNER
 
 @use "../breakpoints" as breakpoint;
@@ -52,6 +57,11 @@
   .doc-markdown-p,
   .doc-markdown-li {
     @include doc-font-style-body-small();
+  }
+
+  .doc-code-block__code-snippet,
+  .doc-code-block {
+    margin: 0 !important;
   }
 }
 

@@ -1,20 +1,20 @@
 ## Browser support
 
-The Modal component leverages the `<dialog>` element which is currently supported by all major browser vendors. To ensure support on older browser versions (e.g., Safari 14 or Internet Explorer 11) we rely on [a polyfill](https://github.com/GoogleChrome/dialog-polyfill) that is automatically loaded when needed.
+The Modal component leverages the `<dialog>` element which is [currently supported by all major browser vendors](https://caniuse.com/dialog).
 
 ## Page scroll
 
-When a Modal is open, the rest of the page is disabled (via `inert`). However, scrolling at the page level is still available. To make it clear to the user that the underlying elements are not interactive and to avoid confusion, we recommend disabling the page scroll `onOpen` and enabling it back `onClose` (for example, by setting `overflow: hidden;` and `overflow: auto;` respectively) by applying it to the `<body>` element.
+When a Modal is open, the rest of the page becomes inert. The page scrolling is also disabled by applying `overflow: hidden` to the `<body>` element, to make it clear to the user that the underlying elements are not interactive and to avoid confusion. Depending on users’ scroll bar settings, opening a Modal may cause slight layout shifts on the horizontal axis.
 
 ## Positioning
 
-As an overlaying component, the `Hds::Modal` requires a high value on the z-axis. We are currently setting `50` as a default value, but we recommend you review the `z-index` values used across your project and either adjust them accordingly or increase this value by defining an override.
+As an overlaying component, the `Hds::Modal` is rendered on the [top layer](https://developer.mozilla.org/en-US/docs/Glossary/Top_layer), meaning it is always placed on top of all other elements in the page.
 
 ## Focus and focus trap
 
 This component uses [`ember-focus-trap`](https://github.com/josemarluedke/ember-focus-trap) to prevent the focus from going outside the Modal and to dismiss the Modal when clicking outside the Modal. This Ember modifier requires at least one interactive element to be present within the Modal, which is by default achieved by the dismiss button in the header.
 
-When a modal is opened with the keyboard, the focus is automatically set to the first focusable element inside the modal, which is the “Dismiss” button. The action of this button has no effect on the system, so focusing on it helps prevent users from accidentally confirming the modal.
+When a Modal is opened with the keyboard, the focus is automatically set to the first focusable element inside the Modal, which is the “Dismiss” button. The action of this button has no effect on the system, so focusing on it helps prevent users from accidentally confirming the Modal.
 
 ## How to use this component
 
@@ -26,7 +26,11 @@ When a modal is opened with the keyboard, the focus is automatically set to the 
 />
 
 {{#if this.basicModalActive}}
-  <Hds::Modal id="basic-modal" @onClose={{fn this.deactivateModal "basicModalActive"}} as |M|>
+  <Hds::Modal
+    id="basic-modal"
+    @onClose={{fn this.deactivateModal "basicModalActive"}}
+    as |M|
+  >
     <M.Header>
       Modal title
     </M.Header>
@@ -40,11 +44,13 @@ When a modal is opened with the keyboard, the focus is automatically set to the 
 {{/if}}
 ```
 
-### Form within a modal dialog
+### Form within a Modal dialog
 
-If a modal dialog contains interactive elements, such as a form, the initial focus should be set on the first input, which is the first focusable element within the form. This can be achieved by setting the `autofocus` property on the first form element.
+If a Modal dialog presents a form, the initial focus should be set on the first input, as the first focusable element in the form. This can be achieved by setting the `autofocus` property on the first form input.
 
-When the modal dialog contains information that might be lost on close, use a confirmation message before discarding it.
+The `<form>` element should be placed in the `Hds::Modal::Body` subcomponent. We also recommend to associate it to the submit button using the `form` attribute, as shown below.
+
+When the Modal dialog contains information that might be lost on close, use a confirmation message before discarding it.
 
 ```handlebars
 <Hds::Button
@@ -56,15 +62,14 @@ When the modal dialog contains information that might be lost on close, use a co
 {{#if this.formModalActive}}
   <Hds::Modal
     id="form-modal"
-    @isDismissDisabled={{this.isModalDismissDisabled}}
-    @onClose={{fn this.checkBeforeDeactivate "formModalActive"}}
+    @onClose={{fn this.deactivateModal "formModalActive"}}
     as |M|
   >
     <M.Header>
       Why do you want to leave the beta?
     </M.Header>
     <M.Body>
-      <form {{on "change" this.markFormAsChanged}} name="leaving-beta-form">
+      <form id="leaving-beta-form" {{on "submit" (fn this.submitForm)}}>
         <Hds::Form::Select::Field autofocus @width="100%" as |F|>
           <F.Label>Select the primary reason</F.Label>
           <F.Options>
@@ -78,10 +83,10 @@ When the modal dialog contains information that might be lost on close, use a co
     </M.Body>
     <M.Footer as |F|>
       <Hds::ButtonSet>
-        <Hds::Button type="submit" @text="Leave Beta"
-          {{on "click" (fn this.saveFormAndClose "formModalActive")}}
+        <Hds::Button type="submit" form="leaving-beta-form" @text="Leave Beta" />
+        <Hds::Button type="button" @text="Cancel" @color="secondary"
+          {{on "click" F.close}}
         />
-        <Hds::Button type="button" @text="Cancel" @color="secondary" {{on "click" F.close}} />
       </Hds::ButtonSet>
     </M.Footer>
   </Hds::Modal>

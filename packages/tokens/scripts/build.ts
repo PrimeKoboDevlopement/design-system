@@ -1,4 +1,9 @@
-import StyleDictionaryPackage, { DesignToken, Transform }  from 'style-dictionary';
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+import StyleDictionaryPackage, { DesignToken, Transform, Config }  from 'style-dictionary';
 import tinycolor from 'tinycolor2';
 
 import fs from 'fs-extra';
@@ -44,6 +49,19 @@ StyleDictionaryPackage.registerTransform({
     transformer: transformPxToRem
 });
 
+StyleDictionaryPackage.registerTransform({
+    name: 'font-size/px',
+    type: 'value',
+    matcher: function(token) {
+        return token?.attributes?.category === 'typography' && token.type === 'font-size';
+    },
+    transformer: function (token) {
+        const val = parseFloat(token.value);
+        if (isNaN(val)) throw `Invalid Number: '${token.name}: ${token.value}' is not a valid number, cannot transform to 'px'.\n`;
+        return `${token.value}px`;
+    }
+});
+
 // NOTICE: in case in the future we need more complex transformations, we can use this approach (see the "modify" attribute):
 // https://github.com/amzn/style-dictionary/blob/main/examples/advanced/transitive-transforms/
 //
@@ -81,8 +99,14 @@ StyleDictionaryPackage.registerTransformGroup({
 });
 
 StyleDictionaryPackage.registerTransformGroup({
+    name: 'products/email',
+    // notice: for emails we need the font-size in `px` (not `rem`)
+    transforms: ['attribute/cti', 'name/cti/kebab', 'font-size/px', 'size/px', 'color/css', 'color/with-alpha', 'time/seconds']
+});
+
+StyleDictionaryPackage.registerTransformGroup({
     name: 'marketing/web',
-    transforms: ['attribute/cti', 'name/cti/kebab', 'color/css', 'color/with-alpha', 'time/seconds']
+    transforms: ['attribute/cti', 'name/cti/kebab', 'font-size/rem', 'size/px', 'color/css', 'color/with-alpha', 'time/seconds']
 });
 
 StyleDictionaryPackage.registerFormat({
@@ -119,6 +143,7 @@ const targets: ConfigTargets = {
             `src/products/shared/**/*.json`
         ],
         'transformGroup': 'products/web',
+        'platforms': ['web/css-variables', 'docs/json']
     },
     'devdot': {
         'source': [
@@ -128,55 +153,110 @@ const targets: ConfigTargets = {
             `src/devdot/**/*.json`
         ],
         'transformGroup': 'products/web',
+        'platforms': ['web/css-variables']
+    },
+    'marketing': {
+        'source': [
+            `src/global/**/*.json`,
+            `src/products/shared/**/*.json`,
+        ],
+        'transformGroup': 'marketing/web',
+        'platforms': ['web/css-variables', 'json']
+    },
+    // these tokens will be consumed by the email templating system in https://github.com/hashicorp/cloud-email
+    'cloud-email': {
+        // we need only foundational tokens (colors, typography, etc)
+        'source': [
+            `src/global/**/*.json`,
+            `src/products/shared/color/**/*.json`,
+            `src/products/shared/typography.json`,
+        ],
+        'transformGroup': 'products/email',
+        'platforms': ['email/sass-variables']
     }
-    // since for now we're not using the marketing tokens/helpers
-    // we have decided to comment this out to reduce overall noise
-    // 'marketing': {
-    //     'source': [
-    //         `src/global/**/*.json`,
-    //         `src/marketing/**/*.json`
-    //     ],
-    //     'transformGroup': 'marketing/web',
-    // }
 };
 
-function getStyleDictionaryConfig({ target }: { target: string }) {
-    return {
-        "source": targets[target].source,
-        "platforms": {
-            "web/css-variables": {
-                "transformGroup": targets[target].transformGroup,
-                "buildPath": `dist/${target}/css/`,
-                "prefix": "token",
-                "basePxFontSize": 16,
-                "files": [
-                    {
-                        "destination": "tokens.css",
-                        "format": "css/variables",
-                        "filter": function(token: DesignToken) {
-                            return !token.private;
-                        },
-                    }
-                ],
-                'actions': ['generate-css-helpers'],
-            },
-            "docs/json": {
-                "transformGroup": targets[target].transformGroup,
-                "buildPath": `dist/docs/${target}/`,
-                "prefix": "token",
-                "basePxFontSize": 16,
-                "files": [
-                    {
-                        "destination": "tokens.json",
-                        "format": "docs/json",
-                        "filter": function(token: DesignToken) {
-                            return !token.private;
-                        },
-                    }
-                ]
-            }
+function getStyleDictionaryConfig({ target }: { target: string }): Config {
+    const { source, transformGroup, platforms } = targets[target]
+    const config: Config = {
+        source,
+        platforms: {}
+    }
+
+    if (platforms.includes('web/css-variables')) {
+        config.platforms['web/css-variables'] = {
+            transformGroup,
+            "buildPath": `dist/${target}/css/`,
+            "prefix": "token",
+            "basePxFontSize": 16,
+            "files": [
+                {
+                    "destination": "tokens.css",
+                    "format": "css/variables",
+                    "filter": function(token: DesignToken) {
+                        return !token.private;
+                    },
+                }
+            ],
+            'actions': ['generate-css-helpers'],
         }
-    };
+    }
+
+    if (platforms.includes("docs/json")) {
+        config.platforms["docs/json"] = {
+            transformGroup,
+            "buildPath": `dist/docs/${target}/`,
+            "prefix": "token",
+            "basePxFontSize": 16,
+            "files": [
+                {
+                    "destination": "tokens.json",
+                    "format": "docs/json",
+                    "filter": function(token: DesignToken) {
+                        return !token.private;
+                    },
+                }
+            ]
+        }
+    }
+
+    if (platforms.includes("json")) {
+        config.platforms["json"] = {
+            transformGroup,
+            "buildPath": `dist/${target}/`,
+            "prefix": "token",
+            "basePxFontSize": 16,
+            "files": [
+                {
+                    "destination": "tokens.json",
+                    "format": "json",
+                    "filter": function(token: DesignToken) {
+                        return !token.private;
+                    },
+                }
+            ]
+        }
+    }
+
+    if (platforms.includes("email/sass-variables")) {
+        config.platforms["email/sass-variables"] = {
+            transformGroup,
+            "buildPath": `dist/${target}/`,
+            "prefix": "token",
+            "files": [
+                {
+                    "destination": "tokens.scss",
+                    "format": "scss/variables",
+                    "filter": function(token: DesignToken) {
+                        return !token.private;
+                    },
+                }
+            ],
+            'actions': ['generate-css-helpers'],
+        }
+    }
+
+    return config;
 }
 
 // PROCESS THE DESIGN TOKENS
@@ -192,8 +272,7 @@ Object.keys(targets).forEach(target => {
     const StyleDictionary = StyleDictionaryPackage.extend(getStyleDictionaryConfig({ target }));
 
     console.log(`\nProcessing target "${target}"...`);
-    StyleDictionary.buildPlatform('web/css-variables');
-    StyleDictionary.buildPlatform('docs/json');
+    StyleDictionary.buildAllPlatforms()
     console.log('\nEnd processing');
 })
 

@@ -2,12 +2,13 @@
 title: Tag
 description: Used to indicate an object’s categorization.
 caption: Used to indicate an object’s categorization.
-status: released
 links:
   figma: https://www.figma.com/file/noyY6dUMDYjmySpHcMjhkN/HDS-Product---Components?node-id=13720%3A34360&t=XC8SUxxJOFHgqYzK-1
-  github: https://github.com/hashicorp/design-system/tree/main/packages/components/addon/components/hds/tag
+  github: https://github.com/hashicorp/design-system/tree/main/packages/components/src/components/hds/tag
+related: ['components/badge','components/badge-count']
 previewImage: assets/illustrations/components/tag.jpg
-keywords: ['chip', 'badge', 'pill', 'label', 'filter'] 
+navigation:
+  keywords: ['chip', 'badge', 'pill', 'label', 'filter']
 ---
 
 <section data-tab="Guidelines">
@@ -18,7 +19,6 @@ keywords: ['chip', 'badge', 'pill', 'label', 'filter']
 <section data-tab="Code">
  @include "partials/code/how-to-use.md"
   @include "partials/code/component-api.md"
-  <!-- @include "partials/code/showcase.md" -->
 </section>
 
 <section data-tab="Specifications">

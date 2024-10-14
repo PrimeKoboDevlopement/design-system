@@ -1,9 +1,16 @@
 ---
 title: Flyout
-description: Displays additional details and information about an item or object overlaid on the main page content.
-status: experimental
+description: Displays additional details and information about an item or object, overlaid on the main page content.
+caption: Displays additional details and information about an item or object, overlaid on the main page content.
+links:
+  figma: https://www.figma.com/file/noyY6dUMDYjmySpHcMjhkN/HDS-Product---Components?node-id=23645%3A53756
+  github: https://github.com/hashicorp/design-system/tree/main/packages/components/src/components/hds/flyout
+related: ['components/reveal','components/modal','components/accordion', 'utilities/dialog-primitive']
 previewImage: assets/illustrations/components/flyout.jpg
-hidden: true
+navigation:
+  keywords: ['drawer', 'panel', 'side', 'modal']
+status:
+  updated: 4.12.0
 ---
 
 <section data-tab="Guidelines">
@@ -22,4 +29,10 @@ hidden: true
 
 <section data-tab="Accessibility">
   @include "partials/accessibility/accessibility.md"
+</section>
+
+<section data-tab="Version history">
+  @include "partials/version-history/4.12.0.md"
+  @include "partials/version-history/4.10.0.md"
+  @include "partials/version-history/4.7.0.md"
 </section>

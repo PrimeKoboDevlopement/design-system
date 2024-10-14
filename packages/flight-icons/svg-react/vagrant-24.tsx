@@ -25,7 +25,9 @@ export const IconVagrant24 = forwardRef<SVGSVGElement, IconProps>(
                 {title ? <title id={titleId}>{title}</title> : null}
                 <path
                     fill={color}
-                    d="M19.983.6l-4.96 2.877v1.767L12 12.384l-3.023-7.14V3.477L4.017.6 1 2.352v2.034l6.719 16.532L12 23.4l4.281-2.482L23 4.386V2.352L19.983.6z"
+                    fillRule="evenodd"
+                    d="M1 1.878h7.333v5.344l7.334 14.9H8.333L1 7.222V1.878zm14.667 5.344V1.878H23v5.344l-6.708 13.626-3.67-7.447 3.045-6.179z"
+                    clipRule="evenodd"
                 />
             </svg>
         );

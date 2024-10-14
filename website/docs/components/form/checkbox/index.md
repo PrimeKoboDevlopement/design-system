@@ -2,12 +2,13 @@
 title: Checkbox
 description: A form element that allows users to select one or more items from a group of items.
 caption: A form element that allows users to select one or more items from a group of items.
-status: released
 links:
   figma: https://www.figma.com/file/noyY6dUMDYjmySpHcMjhkN/HDS-Product---Components?node-id=9120%3A23132&t=pDgL7LJUJXZUN7Xq-3
-  github: https://github.com/hashicorp/design-system/tree/main/packages/components/addon/components/hds/form/checkbox
+  github: https://github.com/hashicorp/design-system/tree/main/packages/components/src/components/hds/form/checkbox
+related: ['components/form/toggle','components/form/radio','components/form/select']
 previewImage: assets/illustrations/components/form/checkbox.jpg
-keywords: ['option', 'select']
+navigation:
+  keywords: ['option', 'select']
 ---
 
 <section data-tab="Guidelines">
@@ -18,7 +19,6 @@ keywords: ['option', 'select']
 <section data-tab="Code">
   @include "partials/code/how-to-use.md"
   @include "partials/code/component-api.md"
-  <!-- @include "partials/code/showcase.md" -->
 </section>
 
 <section data-tab="Specifications">

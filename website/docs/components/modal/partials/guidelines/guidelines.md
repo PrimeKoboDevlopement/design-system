@@ -24,20 +24,7 @@ Common examples include:
 - Simple requests of information from the user.
 - Quick confirmations of actions taken by the user.
 
-<Hds::Modal @size="medium" @color="neutral" open as |M|>
-  <M.Header>
-    Neutral modal
-  </M.Header>
-  <M.Body>
-    <p class="hds-typography-body-300 hds-foreground-primary">Modal content</p>
-  </M.Body>
-  <M.Footer>
-    <Hds::ButtonSet>
-      <Hds::Button type="submit" @text="Confirm" />
-      <Hds::Button type="button" @text="Cancel" @color="secondary" />
-    </Hds::ButtonSet>
-  </M.Footer>
-</Hds::Modal>
+![A neutral modal, the heading has a gray background and the primary button in the footer is the standard blue.](/assets/components/modal/modal-color-neutral.png)
 
 ### Warning
 
@@ -49,20 +36,7 @@ Common examples include:
 - Archiving an item that can be recovered.
 - Changing a setting that may require the user to re-authenticate or perform an action again.
 
-<Hds::Modal @size="medium" @color="warning" open as |M|>
-  <M.Header>
-    Warning modal
-  </M.Header>
-  <M.Body>
-    <p class="hds-typography-body-300 hds-foreground-primary">Modal content</p>
-  </M.Body>
-  <M.Footer>
-    <Hds::ButtonSet>
-      <Hds::Button type="submit" @text="Confirm" />
-      <Hds::Button type="button" @text="Cancel" @color="secondary" />
-    </Hds::ButtonSet>
-  </M.Footer>
-</Hds::Modal>
+![A warning modal, the heading is dark orange with a light orange background and the primary button in the footer is the standard blue.](/assets/components/modal/modal-color-warning.png)
 
 ### Critical
 
@@ -74,20 +48,12 @@ Common examples include:
 - Modifying a setting that cannot be changed or reversed in the future.
 - Alerting the user of unsaved changes that will be discarded.
 
-<Hds::Modal @size="medium" @color="critical" open as |M|>
-  <M.Header>
-    Critical Modal
-  </M.Header>
-  <M.Body>
-    <p class="hds-typography-body-300 hds-foreground-primary">Modal content</p>
-  </M.Body>
-  <M.Footer>
-    <Hds::ButtonSet>
-      <Hds::Button type="submit" @text="Confirm" />
-      <Hds::Button type="button" @text="Cancel" @color="secondary" />
-    </Hds::ButtonSet>
-  </M.Footer>
-</Hds::Modal>
+![A critical modal, the heading is dark red with a light red background and the primary button in the footer is also red.](/assets/components/modal/modal-color-critical.png)
+
+!!! Info
+
+In Figma, the `critical` Modal color is coupled with the `critical` Button color. However, in code, the Modal footer `yields` components passed to it and can accept any Button type or color. We recommend matching the `critical` colors for both the Modal and Button components to better communicate the severity of a destructive action.
+!!!
 
 ## Size
 
@@ -95,50 +61,7 @@ Common examples include:
 
 We recommend using the **medium** size Modal for most scenarios, but use the size that best accounts for the complexity of the content and intended speed of interaction. We do not recommend resizing the Modal manually.
 
-<Hds::Modal @size="small" id="size-small-modal-first" open as |M|>
-  <M.Header>
-    Small modal
-  </M.Header>
-  <M.Body>
-    <p class="hds-typography-body-300 hds-foreground-primary">Modal content</p>
-  </M.Body>
-  <M.Footer>
-    <Hds::ButtonSet>
-      <Hds::Button type="submit" @text="Confirm" />
-      <Hds::Button type="button" @text="Cancel" @color="secondary" />
-    </Hds::ButtonSet>
-  </M.Footer>
-</Hds::Modal>
-
-<Hds::Modal @size="medium" id="size-medium-modal" open as |M|>
-  <M.Header>
-    Medium modal
-  </M.Header>
-  <M.Body>
-    <p class="hds-typography-body-300 hds-foreground-primary">Modal content</p>
-  </M.Body>
-  <M.Footer>
-    <Hds::ButtonSet>
-      <Hds::Button type="submit" @text="Confirm" />
-      <Hds::Button type="button" @text="Cancel" @color="secondary" />
-    </Hds::ButtonSet>
-  </M.Footer>
-</Hds::Modal>
-
-<Hds::Modal @size="large" id="size-large-modal" open as |M|>
-  <M.Header>
-    Large modal
-  </M.Header>
-  <M.Body>
-    <p class="hds-typography-body-300 hds-foreground-primary">Modal content</p>
-  </M.Body>
-  <M.Footer>
-    <Hds::ButtonSet>
-      <Hds::Button type="submit" @text="Confirm" />
-      <Hds::Button type="button" @text="Cancel" @color="secondary" />
-    </Hds::ButtonSet>
-  </M.Footer>
-</Hds::Modal>
+![A small (400px wide), medium (600px), and large (800px) modal vertically stacked.](/assets/components/modal/modal-sizes.png)
 
 ### Height
 
@@ -167,11 +90,11 @@ The purpose and function of the Modal should not rely solely on an icon, instead
 
 An icon paired with the title can help reinforce the purpose and function of the Modal while also drawing the eye to the header and title area. Icons can be used to communicate the severity and importance of interacting with a Modal and are especially useful in a **warning** or **critical** color Modal.
 
-<Hds::Modal::Header @icon="info" @onDismiss={{this.noop}}>Title</Hds::Modal::Header>
+![Modal header title with icon and dismiss button](/assets/components/dialog-primitives/dialog-primitives-header-icon-and-title.jpg)
 
 #### Without title icon
 
-<Hds::Modal::Header @onDismiss={{this.noop}}>Title</Hds::Modal::Header>
+![Modal header title only and dismiss button](/assets/components/dialog-primitives/dialog-primitives-header-title-only.jpg)
 
 ### Tagline
 
@@ -179,30 +102,17 @@ A tagline helps the user maintain the context of the feature, function, or flow 
 
 #### With tagline
 
-<Hds::Modal::Header @tagline="Tagline" @onDismiss={{this.noop}}>Title</Hds::Modal::Header>
+![Modal header tagline, title and dismiss button](/assets/components/dialog-primitives/dialog-primitives-header-tagline-and-title.jpg)
 
 #### With tagline and icon
 
-<Hds::Modal::Header @tagline="Tagline" @icon="info" @onDismiss={{this.noop}}>Title</Hds::Modal::Header>
+![Modal header title icon, tagline, title and dismiss button](/assets/components/dialog-primitives/dialog-primitives-header-tagline-and-icon-and-title.jpg)
 
 ## Modal body
 
 Modals can take on many different types of content, from text-based content to simple forms. 
 
-<Hds::Modal @size="small" @color="neutral" open as |M|>
-  <M.Header>
-    Default
-  </M.Header>
-  <M.Body>
-    <Doc::Placeholder @text="some generic content" @height="50" @background="#eee" />
-  </M.Body>
-  <M.Footer>
-    <Hds::ButtonSet>
-      <Hds::Button type="submit" @text="Confirm" />
-      <Hds::Button type="button" @text="Cancel" @color="secondary" />
-    </Hds::ButtonSet>
-  </M.Footer>
-</Hds::Modal>
+![](/assets/components/modal/modal-body-content.png)
 
 ## Modal footer
 
@@ -214,22 +124,13 @@ Most Modals should have a low to medium level of complexity and promote interact
 
 We recommend using the Primary Button when only one action is present in the Modal.
 
-<Hds::Modal::Footer>
-  <Hds::ButtonSet>
-    <Hds::Button @text="Confirm" />
-  </Hds::ButtonSet>
-</Hds::Modal::Footer>
+![Modal footer with one action](/assets/components/dialog-primitives/dialog-primitives-footer-actions-one.png)
 
 #### Two actions
 
 We recommend using a [ButtonSet](/components/button-set) (Primary Button followed by a Secondary Button) when two actions are present in the Modal.
 
-<Hds::Modal::Footer>
-  <Hds::ButtonSet>
-    <Hds::Button @text="Confirm" />
-    <Hds::Button @text="Cancel" @color="secondary" />
-  </Hds::ButtonSet>
-</Hds::Modal::Footer>
+![Modal footer with two actions](/assets/components/dialog-primitives/dialog-primitives-footer-actions-two.png)
 
 #### Three actions
 
@@ -240,13 +141,7 @@ Common examples of tertiary actions include:
 - Linking to external documentation.
 - Linking to another related area or function within the application; best used to help the user better understand or collect the information needed to interact with the Modal.
 
-<Hds::Modal::Footer>
-  <Hds::ButtonSet>
-    <Hds::Button @text="Confirm" />
-    <Hds::Button @text="Cancel" @color="secondary" />
-    <Hds::Button @text="Learn more about billing" @icon="external-link" @iconPosition="trailing" @color="tertiary" />
-  </Hds::ButtonSet>
-</Hds::Modal::Footer>
+![Modal footer with three actions](/assets/components/dialog-primitives/dialog-primitives-footer-actions-three.png)
 
 ### Action content guidelines
 
@@ -256,22 +151,12 @@ Common examples of tertiary actions include:
 
 !!! Do
 
-<Hds::Modal::Footer>
-  <Hds::ButtonSet>
-    <Hds::Button @text="Rename cluster" />
-    <Hds::Button @text="Cancel" @color="secondary" />
-  </Hds::ButtonSet>
-</Hds::Modal::Footer>
+![Modal footer example with two buttons: a primary 'Rename cluster' button and a secondary 'Cancel' button](/assets/components/modal/modal-action-content-do.png)
 !!!
 
 !!! Dont
 
-<Hds::Modal::Footer>
-  <Hds::ButtonSet>
-    <Hds::Button @text="Rename this cluster" />
-    <Hds::Button @text="Don’t rename this cluster" @color="secondary" />
-  </Hds::ButtonSet>
-</Hds::Modal::Footer>
+![Modal footer example with two buttons: a primary 'Rename this cluster' button and a secondary 'Dont rename this cluster' button](/assets/components/modal/modal-action-content-dont.png)
 !!!
 
 ## Dismissal
@@ -298,8 +183,6 @@ While certain experiences may only call for a single action button, we recommend
 
 Depending on the information being requested, a secondary action that closes or cancels the model may not perform the same function as dismissing the Modal. For example, responding “no” to a “yes/no” question is not the same as dismissing the Modal, the latter of which does not submit a response.
 
-!!! Info
-
 **Best practices for avoiding data loss**
 
 If a user attempts to dismiss a Modal that contains a partially filled form or other interactive elements, we recommend ensuring that the following criteria are met to promote a positive user experience:
@@ -307,5 +190,4 @@ If a user attempts to dismiss a Modal that contains a partially filled form or o
 - The default browser notification is being triggered calling attention to a potential misstep.
 - Partially filled form data is persisted within the application to prevent duplicative work.
 
-![Default browser notification](/assets/components/modal/modal-default-browser-notification.png =542x*)
-!!!
+![Default browser notification](/assets/components/modal/modal-default-browser-notification.png =271x*)

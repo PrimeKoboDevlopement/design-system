@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 // HDS COMPONENTS
 
 @import "@hashicorp/design-system-components";
@@ -22,7 +27,32 @@
 @import "pages/home"; // homepage (index)
 @import "pages/about/principles";
 @import "pages/foundations/landing";
+@import "pages/foundations/icon";
+@import "pages/foundations/typography";
+@import "pages/components/accordion";
+@import "pages/components/alert";
+@import "pages/components/app-footer";
+@import "pages/components/application-state";
+@import "pages/components/button";
+@import "pages/components/code-block";
+@import "pages/components/copy-snippet";
+@import "pages/components/copy-button";
+@import "pages/components/dropdown";
+@import "pages/components/flyout";
 @import "pages/components/landing";
+@import "pages/components/modal";
+@import "pages/components/pagination";
+@import "pages/components/radio-card";
+@import "pages/components/rich-tooltip";
+@import "pages/components/side-nav";
+@import "pages/components/super-select";
+@import "pages/components/table";
+@import "pages/components/tabs";
+@import "pages/layouts/app-frame";
+@import "pages/whats-new/changelog";
+@import "pages/patterns/table-multi-select";
+@import "pages/patterns/filter-patterns";
+@import "pages/utilities/dialog-primitive";
 
 // Third-party declarations
 @import "prism-dracula";
@@ -40,6 +70,7 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -59,37 +90,4 @@ body {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important;
   clip-path: inset(50%) !important;
-}
-
-// TODO: move these custom styles meant for presentation pursposes
-// to their own section when agreed with the team
-#guidelines {
-  .hds-modal[open] {
-    position: relative;
-    z-index: 0;
-    display: inline-block;
-    margin-bottom: 1rem;
-
-    .hds-modal__dismiss {
-      pointer-events: none;
-    }
-  }
-}
-
-// PERCY
-
-// Percy (percySnapshot) doesn't allow to target specific DOM elements, so we have to "blacklist" the elements
-// that we want to exclude from the snapshots using their own "Percy-specific CSS".
-// see: https://docs.percy.io/docs/percy-specific-css#section-hiding-regions-with-percy-specific-css
-// notice: we tried to use directly the "percyCSS" option in the percySnapshot() method but it didn't work
-// so we had to rely on this specific custom media query
-
-@media only percy {
-  // TODO - update these selectors according to the new page structure
-  header,
-  aside,
-  footer,
-  main section:not([data-test-percy]) {
-    display: none !important;
-  }
 }

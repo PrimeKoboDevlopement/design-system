@@ -21,13 +21,21 @@ Text Input accepts [all native HTML types](https://developer.mozilla.org/en-US/d
 
 ### Password
 
-<Hds::Form::TextInput::Field @type="password" placeholder="Password" @value="password" @width="300px" as |F|>
+The `TextInput` component has a visibility toggle feature for password fields. By default, a button appears allowing users to switch easily between visible and obfuscated input.
+
+<Hds::Form::TextInput::Field @type="password" @hasVisibilityToggle={{true}} placeholder="Password" @value="password" @width="300px" as |F|>
   <F.Label>Password</F.Label>
 </Hds::Form::TextInput::Field>
 
 ### Search
 
 <Hds::Form::TextInput::Field @type="search" placeholder="Search" @width="300px" as |F|>
+  <F.Label>Search</F.Label>
+</Hds::Form::TextInput::Field>
+
+#### Loading
+
+<Hds::Form::TextInput::Field @type="search" placeholder="Search" @width="300px" @isLoading="true" as |F|>
   <F.Label>Search</F.Label>
 </Hds::Form::TextInput::Field>
 
@@ -38,12 +46,30 @@ Text Input accepts [all native HTML types](https://developer.mozilla.org/en-US/d
 Date and time fields use the native browser functionality for the popovers. Some browsers do not display an icon or popover.
 !!!
 
-<Hds::Form::TextInput::Field @type="date" placeholder="mm/dd/yy" @width="150px" as |F|>
+<Hds::Form::TextInput::Field @type="date" placeholder="mm/dd/yy" as |F|>
   <F.Label>Date</F.Label>
 </Hds::Form::TextInput::Field>
 
-<Hds::Form::TextInput::Field @type="time" placeholder="--:-- --" @width="150px" as |F|>
+<Hds::Form::TextInput::Field @type="time" placeholder="--:-- --" as |F|>
   <F.Label>Time</F.Label>
+</Hds::Form::TextInput::Field>
+
+<Hds::Form::TextInput::Field @type="datetime-local" placeholder="mm/dd/yyT--:-- --" as |F|>
+  <F.Label>Datetime</F.Label>
+</Hds::Form::TextInput::Field>
+
+<Hds::Form::TextInput::Field @type="month" placeholder="yyyy-mm" as |F|>
+  <F.Label>Month</F.Label>
+</Hds::Form::TextInput::Field>
+
+<Hds::Form::TextInput::Field @type="week" placeholder="yyyy-W00" as |F|>
+  <F.Label>Week</F.Label>
+</Hds::Form::TextInput::Field>
+
+### Telephone
+
+<Hds::Form::TextInput::Field @type="tel" @width="300px" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" as |F|>
+  <F.Label>Tel</F.Label>
 </Hds::Form::TextInput::Field>
 
 ## Required and optional
@@ -84,15 +110,14 @@ Hidden fields are not visible to the user but the value in the field **is** pass
 | Disabled       | ✅              | 🚫                  | 🚫                          |                              
 | Hidden         | 🚫              | 🚫                  | ✅                          |
 
+## Character count
+
+For tracking the number of characters entered into a TextInput and defining requirements around minimum and maximum length, refer to the [Character count](/components/form/primitives#formcharactercount) documentation.
+
 ## Error validation
 
-For error validation recommendations, refer to the [Primitives](/components/form/primitives) documentation.
+For error validation recommendations, refer to the [Form patterns](/patterns/form-patterns?tab=validation) documentation.
 
 ## Content
 
-For content recommendations, refer to the [Primitives](/components/form/primitives) documentation.
-
-## Related
-
-- [Select](/components/form/select)
-- [Textarea](/components/form/textarea)
+For high-level content recommendations, refer to our [Primitives](/components/form/primitives) documentation.

@@ -1,6 +1,6 @@
 ## How to use this component
 
-The most basic invocation requires the `type` argument to be passed, along with the `title` and/or `description` content. By default, a `neutral` alert is generated.
+The most basic invocation requires the `type` argument to be passed, along with the `title` and/or `description` content. By default, a `neutral` Alert is generated.
 
 ```handlebars
 <Hds::Alert @type="inline" as |A|>
@@ -11,7 +11,7 @@ The most basic invocation requires the `type` argument to be passed, along with 
 
 ### Type
 
-A different type of alert can be invoked using the `type` argument.
+A different type of Alert can be invoked using the `type` argument.
 
 ```handlebars
 <Hds::Alert @type="page" as |A|>
@@ -27,7 +27,7 @@ A different type of alert can be invoked using the `type` argument.
 </Hds::Alert>
 ```
 
-### Content
+### Title and description
 
 Optionally, you can pass only `title` or only `description`.
 
@@ -43,9 +43,32 @@ Optionally, you can pass only `title` or only `description`.
 </Hds::Alert>
 ```
 
+### Tag
+
+The `@tag` argument changes the HTML element that wraps the title content of `[A].Title`. When organizing the content on a webpage, the heading levels should reflect the structure of the page. For example, if an Alert appears directly below the main heading of the page, it should be `"h2"`.
+
+```handlebars
+<div class="doc-alert-demo-heading">
+ <Hds::Text::Display @tag="h1" @size="500">Edit credit card</Hds::Text::Display>
+</div>
+<Hds::Alert @type="inline" @color="critical" as |A|>
+  <A.Title @tag="h2">Form submission error</A.Title>
+  <A.Description>Correct the formatting of the following fields to update your user profile:</A.Description>
+  <A.Description>
+    <Hds::Link::Inline @href="#" @color="secondary">Expiration date</Hds::Link::Inline>
+  </A.Description>
+</Hds::Alert>
+```
+
+!!! Insight
+
+The default `@tag` is `"div"` because the correct value is dependent on the individual page. We strongly encourage consumers to update the `@tag` to meet WCAG Success Criterion [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html) as the visual experience should match what is presented to the user with assistive technology.
+
+!!!
+
 ### Color
 
-A different color can be applied to the alert using the `color` argument. This will determine the default icon used in the alert, unless overwritten.
+A different color can be applied to the Alert using the `color` argument. This will determine the default icon used in the Alert, unless overwritten.
 
 ```handlebars
 <Hds::Alert @type="inline" @color="success" as |A|>
@@ -56,7 +79,7 @@ A different color can be applied to the alert using the `color` argument. This w
 
 ### Icons
 
-A different icon can be used in the alert using the `icon` argument. This accepts any [Helios icon](/icons/library) name.
+A different icon can be used in the Alert using the `icon` argument. This accepts any [icon](/icons/library) name.
 
 ```handlebars
 <Hds::Alert @type="inline" @color="success" @icon="bulb" as |A|>
@@ -65,7 +88,7 @@ A different icon can be used in the alert using the `icon` argument. This accept
 </Hds::Alert>
 ```
 
-If you need to hide the icon, pass `false` to the `icon` argument. This is only an option on page and inline alerts as compact alerts require an icon.
+If you need to hide the icon, pass `false` to the `icon` argument. This is only an option on page and inline Alerts as compact Alerts require an icon.
 
 ```handlebars
 <Hds::Alert @type="inline" @color="success" @icon={{false}} as |A|>
@@ -76,7 +99,7 @@ If you need to hide the icon, pass `false` to the `icon` argument. This is only 
 
 ### Dismissal
 
-To enable dismissibility, pass a callback function to the `onDismiss` argument. This will add a dismiss button to the alert. When that button is clicked, the callback function will be executed. 
+To enable dismissibility, pass a callback function to the `onDismiss` argument. This will add a dismiss button to the Alert. When that button is clicked, the callback function will be executed. 
 
 Given the variety of use cases and contexts in which alerts are used across products, application teams will need to implement the callback function.
 
@@ -89,14 +112,14 @@ Given the variety of use cases and contexts in which alerts are used across prod
 
 ### Actions
 
-Actions can be passed to the component using one of the suggested `Button` or `Link::Standalone` contextual components.
+Actions can be passed to the component using one of the suggested `Button` or `LinkStandalone` contextual components.
 
 ```handlebars
 <Hds::Alert @type="inline" as |A|>
   <A.Title>Title here</A.Title>
   <A.Description>Description here</A.Description>
   <A.Button @text="Your action" @color="secondary" {{on "click" this.yourOnClickFunction}} />
-  <A.Link::Standalone @icon="arrow-right" @iconPosition="trailing" @text="Another action" @href="#" />
+  <A.LinkStandalone @color="secondary" @icon="arrow-right" @iconPosition="trailing" @text="Another action" @href="#" />
 </Hds::Alert>
 ```
 
@@ -114,7 +137,7 @@ When needed, the `Description` contextual component can contain logic, rich HTML
     <em>emphasized text</em>,
     <code>code</code>,
     <pre>pre</pre>,
-    <a href="#">inline</a>
+    <Hds::Link::Inline @color="secondary" @href="#">inline</Hds::Link::Inline>
     <LinkTo @route="index">links</LinkTo>.
   </A.Description>
 </Hds::Alert>

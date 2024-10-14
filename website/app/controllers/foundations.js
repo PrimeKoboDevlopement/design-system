@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import Controller from '@ember/controller';
 
 export default class FoundationsController extends Controller {
@@ -8,14 +13,19 @@ export default class FoundationsController extends Controller {
     const cards = {};
     sections.forEach((section) => {
       cards[section] = tocTree
-        .filter((page) => page.pageParents[0] === section)
+        .filter(
+          (page) =>
+            page.pageParents[0] === section &&
+            !page.pageAttributes?.navigation?.hidden
+        )
         .map((page) => {
           return {
             image: page.pageAttributes.previewImage,
-            title: page.pageAttributes.title,
-            caption:
-              page.pageAttributes.caption ||
-              'Don\'t forget to add the "caption" to the frontmatter for this page',
+            title:
+              page.pageAttributes?.navigation?.label ||
+              page.pageAttributes.title,
+            caption: page.pageAttributes.caption,
+            status: page.pageAttributes.status,
             route: 'show',
             model: page.pageURL,
           };

@@ -1,3 +1,8 @@
+{{!
+  Copyright (c) HashiCorp, Inc.
+  SPDX-License-Identifier: MPL-2.0
+}}
+
 <main class="doc-page-home" id="main">
   <div class="doc-page-home__content">
     <div class="doc-page-home__hero">
@@ -7,21 +12,29 @@
       <div class="doc-page-home__hero-links">
         <Doc::LinkWithIcon
           @route="show"
-          @model="getting-started/for-designers"
-          @label="Start designing with Helios"
+          @model="whats-new/release-notes"
+          @label="Release Notes"
           @icon="arrow-right"
           @isAnimated={{true}}
+          @eventName="Hero - Release Notes"
         />
         <Doc::LinkWithIcon
-          @route="show"
-          @model="getting-started/for-engineers"
-          @label="Install Helios in your project"
-          @icon="arrow-right"
+          @href="https://go.hashi.co/hds-rollout"
+          @label="Helios Roadmap"
+          @icon="external-link"
           @isAnimated={{true}}
+          @eventName="Hero - Roadmap"
+        />
+        <Doc::LinkWithIcon
+          @href="https://go.hashi.co/hds-feedback"
+          @label="Share Feedback"
+          @icon="external-link"
+          @isAnimated={{true}}
+          @eventName="Hero - Feedback"
         />
       </div>
     </div>
-    <ul class="doc-page-home__cards" role="list">
+    <ul class="doc-page-home__cards" role="list" aria-label="the cornerstones of the helios design system">
       {{#each this.cards as |card|}}
         <li class="doc-page-home__card">
           <p class="doc-page-home__card-title">{{capitalize card.title}}</p>
@@ -34,6 +47,7 @@
             @fillParent={{true}}
             @isAnimated={{true}}
             aria-label={{concat "Explore " card.title ": " card.description}}
+            @eventName={{concat "Card - " card.title}}
           />
         </li>
       {{/each}}

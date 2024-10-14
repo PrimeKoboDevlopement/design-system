@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'website/tests/helpers';
@@ -12,7 +17,7 @@ module('Acceptance | foundations/border', function (hooks) {
     assert.strictEqual(currentURL(), '/foundations/border');
   });
 
-  test('foundations/border page passes a11y automated checks', async function (assert) {
+  test('foundations/border page passes automated a11y checks', async function (assert) {
     await visit('/foundations/border');
 
     await a11yAudit();

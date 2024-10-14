@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import Component from '@glimmer/component';
 import { restartableTask, timeout } from 'ember-concurrency';
 import { action } from '@ember/object';
@@ -9,9 +14,9 @@ const DEBOUNCE_MS = 250;
 // we want to limit the content of the sidebar navigation to only the links related to the current "section".
 // notice: super hacky way to do it, but... it works™ !
 const getTocSectionsBundle = (section) => {
-  const ABOUT = ['about', 'getting-started'];
+  const ABOUT = ['about', 'whats-new', 'getting-started'];
   const FOUNDATIONS = ['foundations', 'icons'];
-  const COMPONENTS = ['components', 'overrides', 'utilities'];
+  const COMPONENTS = ['components', 'layouts', 'overrides', 'utilities'];
   const PATTERNS = ['patterns'];
   // this will be removed later
   const TESTING = ['testing'];
@@ -38,21 +43,26 @@ const getSidebarStructuredTree = (subTree, filterQuery, currentURL) => {
   Object.keys(subTree).forEach((key) => {
     const item = subTree[key];
     if (item.pageURL) {
-      const fq = filterQuery.toLowerCase();
-      if (isFiltered) {
-        const titleMatch =
-          item.pageAttributes.title &&
-          item.pageAttributes.title.toLowerCase().includes(fq);
-        const keywordsMatch =
-          item.pageAttributes.keywords &&
-          item.pageAttributes.keywords.some((k) =>
-            k.toLowerCase().includes(fq)
-          );
-        if (titleMatch || keywordsMatch) {
+      if (!item.pageAttributes?.navigation?.hidden) {
+        const fq = filterQuery.toLowerCase();
+        if (isFiltered) {
+          const labelMatch =
+            item.pageAttributes.navigation.label &&
+            item.pageAttributes.navigation.label.toLowerCase().includes(fq);
+          const titleMatch =
+            item.pageAttributes.title &&
+            item.pageAttributes.title.toLowerCase().includes(fq);
+          const keywordsMatch =
+            item.pageAttributes.navigation.keywords &&
+            item.pageAttributes.navigation.keywords.some((k) =>
+              k.toLowerCase().includes(fq)
+            );
+          if (labelMatch || titleMatch || keywordsMatch) {
+            sidebarStructuredTree[key] = item;
+          }
+        } else {
           sidebarStructuredTree[key] = item;
         }
-      } else {
-        sidebarStructuredTree[key] = item;
       }
     } else {
       const subSubTree = getSidebarStructuredTree(item, filterQuery);

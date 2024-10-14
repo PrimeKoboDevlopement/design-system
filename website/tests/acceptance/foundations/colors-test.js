@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'website/tests/helpers';
@@ -11,7 +16,7 @@ module('Acceptance | foundations/colors', function (hooks) {
 
     assert.strictEqual(currentURL(), '/foundations/colors');
   });
-  test('foundations/colors page passes a11y automated checks', async function (assert) {
+  test('foundations/colors page passes automated a11y checks', async function (assert) {
     await visit('/foundations/colors');
 
     await a11yAudit();

@@ -3,22 +3,17 @@
 ### When to use
 
 - To trigger an action or event, like a form submission.
+- For links that require more prominence, such as CTAs (calls-to-action), see [Links as Buttons](/components/button#links-as-buttons).
+- For links that are part of an [inverse button group](/patterns/button-organization#grouping), see [Links as Buttons](/components/button#links-as-buttons).
 
 ### When not to use
 
-- When navigating to another destination, consider [Inline](/components/link/inline) or [Standalone](/components/link/standalone) link.
+- For links that are not CTAs or part of an [inverse button group](/patterns/button-organization#grouping), consider [Inline](/components/link/inline) or [Standalone](/components/link/standalone) link.
 - To display multiple actions under a single button, use [Dropdown](/components/dropdown).
 
 ## Sizes
 
 Medium is the preferred size, but use a Button size that best fits the UI (e.g., don’t use a `large` button in a table).
-
-!!! Insight
-
-**Migration tip** 
-
-Medium buttons are the same size as default Structure buttons. Small buttons are the same size as compact Structure buttons.
-!!!
 
 <Doc::Layout @spacing="16px">
   <Hds::Button @size="small" @text="Small" />
@@ -30,7 +25,7 @@ Full-width buttons fill 100% of the parent container. Use full-width Buttons spa
 
 <Hds::Button @size="large" @isFullWidth={{true}} @text="Full-width button" />
 
-## Types
+## Colors
 
 ### Primary
 
@@ -84,14 +79,86 @@ Buttons used for a Dropdown (with the chevron icon) can be found in [Dropdown](/
   <Hds::Button @color="secondary" @text="No text" @icon="plus" @isIconOnly={{true}} />
 </Hds::ButtonSet>
 
-## Button set
+### Leading
 
-[ButtonSets](/components/button-set) are patterns when multiple Buttons need to be displayed in a single row.
+In most cases, use leading icons. Choose icons that add meaning and clarity to the action described in the button’s text.
+
+<Hds::ButtonSet>
+  <Hds::Button @color="secondary" @text="Unlock" @icon="unlock" @iconPosition="leading" />
+  <Hds::Button @color="critical" @text="Delete" @icon="trash" @iconPosition="leading" />
+  <Hds::Button @color="tertiary" @text="Previous" @icon="chevron-left" @iconPosition="leading" />
+</Hds::ButtonSet>
+
+!!! Do
+
+Use the leading position when creating or adding a new object.
+
+<Hds::ButtonSet>
+  <Hds::Button @color="primary" @text="Create variable" @icon="plus" @iconPosition="leading" />
+  <Hds::Button @color="secondary" @text="Add repository" @icon="plus" @iconPosition="leading" />
+</Hds::ButtonSet>
+
+!!!
+
+### Trailing
+
+Consider trailing icons when guiding the user forward through the product.
+
+Use `chevron-right` to indicate moving forward in a multi-step flow.
+
+<Doc::Layout>
+  <Hds::Button @color="primary" @text="Next" @icon="chevron-right" @iconPosition="trailing" />
+</Doc::Layout>
+
+Use `arrow-right` when using the Button for internal links. In most cases, consider using a [Standalone Link](/components/link/standalone) instead. For more details, please refer to the [code documentation](/components/button?tab=code#links).
+
+<Doc::Layout>
+  <Hds::Button @color="secondary" @text="Continue with HCP account" @icon="arrow-right" @iconPosition="trailing" @href="https://hashicorp.com" />
+</Doc::Layout>
+
+Use `external-link` when using the Button for external links. In most cases, consider using a [Standalone Link](/components/link/standalone) instead. For more details, please refer to the [code documentation](/components/button?tab=code#links).
+
+<Hds::Button @color="secondary" @text="Authenticate with GitHub" @icon="external-link" @iconPosition="trailing" @href="https://hashicorp.com" />
+
+## Links as Buttons
+
+The Button component accepts an `@href` or `@route` argument, which results in a link with the visual appearance of a button. While in general, we advise against this approach because it can cause confusion for keyboard-only users, there are a few instances where this may be appropriate for improved visual hierarchy, such as:
+
+For links that require more prominence and CTAs (calls-to-action).
+
+<Doc::Layout @direction="vertical" @spacing="16px">
+  <Hds::Button @color="primary" @text="Sign up for free" @size="large" @href="#" />
+  <Hds::Alert @type="inline" @color="neutral" as |A|>
+    <A.Title>Modifying user permissions</A.Title>
+    <A.Description>
+      This page displays all users in the organization who have permissions in this project. A user must be invited to the org first before you can change the user’s role at the project level.
+    </A.Description>
+    <A.Button @text="Go to HCP Design Sandbox" @color="secondary" @href="#" />
+    <A.LinkStandalone @text="View documentation" @color="primary" @icon="docs-link" @iconPosition="trailing" @href="#" />
+  </Hds::Alert>
+</Doc::Layout>
+
+For links that are part of an [inverse button group](/patterns/button-organization#grouping).
 
 <Hds::ButtonSet>
   <Hds::Button @color="primary" @text="Submit" />
-  <Hds::Button @color="secondary" @text="Cancel" />
+  <Hds::Button @color="secondary" @text="Cancel" @href="#" />
 </Hds::ButtonSet>
+
+Learn more about [how semantic use helps make our products more conformant](/components/button?tab=accessibility#button-vs-link).
+
+## Button set
+
+ButtonSet is a layout component that provides consistent spacing between multiple Buttons. Refer to the [ButtonSet](/components/button-set) documentation to learn more. ButtonSet is only available in code.
+
+<Doc::Layout>
+  <Hds::ButtonSet>
+    <Hds::Button @color="primary" @text="Edit cluster" />
+    <Hds::Button @color="secondary" @text="Create cluster" />
+  </Hds::ButtonSet>
+</Doc::Layout>
+
+More detailed examples and guidance on button organization can be found in the [button organization](/patterns/button-organization) pattern documentation.
 
 ## Content
 

@@ -1,4 +1,4 @@
-## Conformance status
+## Conformance rating
 
 <Doc::Badge @type="warning">Conditionally conformant</Doc::Badge>
 
@@ -6,7 +6,7 @@ Breadcrumbs are conformant unless using the truncation feature, which would not 
 
 ## Known issues
 
-When the browser zoom is scaled to 400% and a truncated menu is open, the menu may extend beyond the viewport and require the user to scroll in multiple directions. This is a failure of [Reflow – 1.4.10](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html).
+When the browser zoom is scaled to 400% and a truncated menu is open, the menu may extend beyond the viewport and require the user to scroll in multiple directions. This is a failure of [Reflow – 1.4.10](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html).
 
 ![The breadcrumb component with the “truncation” dropdowm extending beyond the viewport](/assets/components/breadcrumb/breadcrumb-known-issue-truncation-outside-viewport.png =1208x*)
 
@@ -22,6 +22,4 @@ This section is for reference only. This component intends to conform to the fol
 
 ---
 
-## Support
-
-If any accessibility issues have been found within this component, let us know by [submitting an issue](https://github.com/hashicorp/design-system/issues/new/choose).
+<Doc::A11ySupport />

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 // CARDS > DECK
 
 @use "../../breakpoints" as breakpoint;
@@ -5,6 +10,7 @@
 
 .doc-cards-deck {
   display: grid;
+  grid-auto-rows: 1fr;
   gap: 32px; // TODO maybe different gaps via a prop?
   margin: 0;
   padding: 0;
